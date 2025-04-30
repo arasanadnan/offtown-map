@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Festival Haritası - Döndürülmüş Kutular</title>
+  <title>Festival Haritası - Ayrı Açılı Kutular</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -17,7 +17,6 @@
   <div id="map"></div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Haritayı başlat
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
     // Esri Uydu Haritası
@@ -25,7 +24,7 @@
       attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // Kullanıcının GPS konumunu göster
+    // Kullanıcının konumu
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -35,7 +34,7 @@
       });
     }
 
-    // 🧠 Açı dönüşüm fonksiyonları
+    // Dönüşüm fonksiyonları
     function degToRad(deg) {
       return deg * (Math.PI / 180);
     }
@@ -47,7 +46,7 @@
       return [centerLat + dLat, centerLng + dLng];
     }
 
-    // 📦 Genel kutu ekleme fonksiyonu
+    // Genel fonksiyon
     function addRotatedBox(center, width, height, angle, color, popup) {
       const halfWidth = width / 2;
       const halfHeight = height / 2;
@@ -66,50 +65,50 @@
       }).addTo(map).bindPopup(popup);
     }
 
-    // ✅ AÇIYI BURADAN DEĞİŞTİREBİLİRSİN
-    const rotationAngle = 30; // tüm kutulara uygulanan döndürme açısı (°)
+    // 📦 Her kutuya kendi açısını burada veriyoruz
+    // 🔽 Açıları buradan değiştirebilirsin
 
-    // 🎤 Ana Sahne – 25×25m
+    // 🎤 Ana Sahne – 25×25m – 30°
     addRotatedBox(
-      [40.891139, 29.377444], // merkez koordinat
-      25, 25,                 // genişlik, yükseklik (metre)
-      rotationAngle,         // açı (derece)
-      "#e60000",             // renk
+      [40.891139, 29.377444],
+      25, 25,
+      30, // Ana Sahne açısı
+      "#e60000",
       "<b>Ana Sahne</b><br>DJ ve Performans Alanı"
     );
 
-    // 🏦 İş Bankası – 10×10m
+    // 🏦 İş Bankası – 10×10m – 0°
     addRotatedBox(
       [40.891427, 29.379045],
       10, 10,
-      rotationAngle,
+      0, // İş Bankası açısı
       "#1d3f72",
       "<b>İş Bankası</b>"
     );
 
-    // 🍝 Pasta La Vista – 10×10m
+    // 🍝 Pasta La Vista – 10×10m – 45°
     addRotatedBox(
       [40.891056, 29.378616],
       10, 10,
-      rotationAngle,
+      45, // Pasta La Vista açısı
       "#e67e22",
       "<b>Pasta La Vista</b><br>İtalyan Mutfağı"
     );
 
-    // 📻 RadyoTown – 10×10m
+    // 📻 RadyoTown – 10×10m – -20°
     addRotatedBox(
       [40.891033, 29.379149],
       10, 10,
-      rotationAngle,
+      -20, // RadyoTown açısı
       "#9b59b6",
       "<b>RadyoTown</b><br>Canlı Yayın & DJ"
     );
 
-    // 🍗 Tavuk Standı – 10×10m
+    // 🍗 Tavuk Standı – 10×10m – 60°
     addRotatedBox(
       [40.890967, 29.378613],
       10, 10,
-      rotationAngle,
+      60, // Tavuk Standı açısı
       "#2ecc71",
       "<b>Tavuk Standı</b><br>Izgara Tavuk & Dürüm"
     );
