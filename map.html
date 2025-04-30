@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Festival Haritası</title>
+  <title>Festival Haritası - Uydu Görünüm</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -18,15 +18,15 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Haritayı Ana Sahne konumuna odakla
+    // Harita merkezini Sabancı Üniversitesi ve Ana Sahne'ye odakla
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
-    // OpenStreetMap zemin katmanı
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
+    // Esri World Imagery (Uydu Harita) katmanı
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // GPS konumunu göster
+    // GPS ile kullanıcının konumunu göster
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -36,16 +36,16 @@
       });
     }
 
-    // Ana Sahne kutusu (alan)
+    // Ana Sahne için renkli dikdörtgen (alan)
     const anaSahneAlan = [
-      [40.89120, 29.37720], // sol alt köşe
-      [40.89130, 29.37752]  // sağ üst köşe
+      [40.89120, 29.37720], // sol alt
+      [40.89130, 29.37752]  // sağ üst
     ];
 
     L.rectangle(anaSahneAlan, {
-      color: "#e60000",        // kenar rengi
+      color: "#e60000",
       weight: 2,
-      fillColor: "#ff4d4d",    // iç renk
+      fillColor: "#ff4d4d",
       fillOpacity: 0.6
     }).addTo(map)
       .bindPopup("<b>Ana Sahne</b><br>DJ ve Konserler");
