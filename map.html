@@ -11,6 +11,15 @@
       margin: 0;
       padding: 0;
     }
+    .label-text {
+      background-color: rgba(255, 77, 77, 0.75);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: white;
+      font-weight: bold;
+      font-size: 12px;
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -18,15 +27,14 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Harita merkezini Sabancı Üniversitesi ve Ana Sahne'ye odakla
-    const map = L.map('map').setView([40.89125, 29.37736], 18);
+    const map = L.map('map').setView([40.53288, 29.22383], 20);
 
-    // Esri World Imagery (Uydu Harita) katmanı
+    // Esri uydu görünümü
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // GPS ile kullanıcının konumunu göster
+    // GPS konumu
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -36,7 +44,7 @@
       });
     }
 
-    // Ana Sahne için renkli dikdörtgen (alan)
+    // 📦 Ana Sahne Kutusu
     const anaSahneAlan = [
       [40.53285, 29.22381], // sol alt
       [40.53292, 29.22384]  // sağ üst
@@ -46,9 +54,17 @@
       color: "#e60000",
       weight: 2,
       fillColor: "#ff4d4d",
-      fillOpacity: 0.6
-    }).addTo(map)
-      .bindPopup("<b>Ana Sahne</b><br>DJ ve Konserler");
+      fillOpacity: 0.5
+    }).addTo(map);
+
+    // ✏️ Ana Sahne Yazısı (tam ortasına)
+    const label = L.divIcon({
+      className: 'label-text',
+      html: 'Ana Sahne',
+      iconSize: [100, 20]
+    });
+
+    L.marker([40.532885, 29.223825], { icon: label, interactive: false }).addTo(map);
   </script>
 </body>
 </html>
