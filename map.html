@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Festival Haritası - Döndürülebilir Kutular</title>
+  <title>Festival Haritası - Döndürülmüş Kutular</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -15,17 +15,17 @@
 </head>
 <body>
   <div id="map"></div>
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
+    // Haritayı başlat
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
-    // Uydu görüntüsü (Esri)
+    // Esri Uydu Haritası
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // GPS ile konum göster
+    // Kullanıcının GPS konumunu göster
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -35,57 +35,84 @@
       });
     }
 
-    // 🔧 Dönüşüm yardımcı fonksiyonları
+    // 🧠 Açı dönüşüm fonksiyonları
     function degToRad(deg) {
       return deg * (Math.PI / 180);
     }
 
     function rotateAround(centerLat, centerLng, offsetX, offsetY, angleDegrees) {
       const angle = degToRad(angleDegrees);
-
       const dLat = (offsetY * Math.cos(angle) - offsetX * Math.sin(angle)) / 111320;
       const dLng = (offsetY * Math.sin(angle) + offsetX * Math.cos(angle)) / (111320 * Math.cos(degToRad(centerLat)));
-
       return [centerLat + dLat, centerLng + dLng];
     }
 
-    function drawRotatedBox(center, angle, color, popupText) {
-      const halfWidth = 2.5;   // ❗ kutunun yarı genişliği (5m kutu)
-      const halfHeight = 2.5;  // ❗ kutunun yarı yüksekliği
+    // 📦 Genel kutu ekleme fonksiyonu
+    function addRotatedBox(center, width, height, angle, color, popup) {
+      const halfWidth = width / 2;
+      const halfHeight = height / 2;
 
       const corners = [
         rotateAround(center[0], center[1], -halfWidth, -halfHeight, angle),
-        rotateAround(center[0], center[1], -halfWidth, halfHeight, angle),
-        rotateAround(center[0], center[1], halfWidth, halfHeight, angle),
-        rotateAround(center[0], center[1], halfWidth, -halfHeight, angle)
+        rotateAround(center[0], center[1], -halfWidth,  halfHeight, angle),
+        rotateAround(center[0], center[1],  halfWidth,  halfHeight, angle),
+        rotateAround(center[0], center[1],  halfWidth, -halfHeight, angle)
       ];
 
       L.polygon(corners, {
         color: color,
         fillColor: color,
         fillOpacity: 0.6
-      }).addTo(map)
-        .bindPopup(popupText);
+      }).addTo(map).bindPopup(popup);
     }
 
-    // ❗❗❗ BU SATIRI DEĞİŞTİR → tüm kutuların dönüş açısı burada ayarlanır
-    const angle = 45; // derece (örneğin 30 yaparsan hepsi 30° döner)
+    // ✅ AÇIYI BURADAN DEĞİŞTİREBİLİRSİN
+    const rotationAngle = 30; // tüm kutulara uygulanan döndürme açısı (°)
 
-    // 🎤 Ana Sahne
-    drawRotatedBox([40.891139, 29.377444], angle, "#e74c3c", "<b>Ana Sahne</b><br>DJ ve Performans");
+    // 🎤 Ana Sahne – 25×25m
+    addRotatedBox(
+      [40.891139, 29.377444], // merkez koordinat
+      25, 25,                 // genişlik, yükseklik (metre)
+      rotationAngle,         // açı (derece)
+      "#e60000",             // renk
+      "<b>Ana Sahne</b><br>DJ ve Performans Alanı"
+    );
 
-    // 🏦 İş Bankası
-    drawRotatedBox([40.891427, 29.379045], angle, "#3498db", "<b>İş Bankası</b>");
+    // 🏦 İş Bankası – 10×10m
+    addRotatedBox(
+      [40.891427, 29.379045],
+      10, 10,
+      rotationAngle,
+      "#1d3f72",
+      "<b>İş Bankası</b>"
+    );
 
-    // 🍝 Pasta La Vista
-    drawRotatedBox([40.891056, 29.378616], angle, "#e67e22", "<b>Pasta La Vista</b><br>İtalyan Mutfağı");
+    // 🍝 Pasta La Vista – 10×10m
+    addRotatedBox(
+      [40.891056, 29.378616],
+      10, 10,
+      rotationAngle,
+      "#e67e22",
+      "<b>Pasta La Vista</b><br>İtalyan Mutfağı"
+    );
 
-    // 📻 RadyoTown
-    drawRotatedBox([40.891033, 29.379149], angle, "#9b59b6", "<b>RadyoTown</b><br>Canlı Yayın & DJ");
+    // 📻 RadyoTown – 10×10m
+    addRotatedBox(
+      [40.891033, 29.379149],
+      10, 10,
+      rotationAngle,
+      "#9b59b6",
+      "<b>RadyoTown</b><br>Canlı Yayın & DJ"
+    );
 
-    // 🍗 Tavuk Standı
-    drawRotatedBox([40.890967, 29.378613], angle, "#2ecc71", "<b>Tavuk Standı</b><br>Izgara & Dürüm");
-
+    // 🍗 Tavuk Standı – 10×10m
+    addRotatedBox(
+      [40.890967, 29.378613],
+      10, 10,
+      rotationAngle,
+      "#2ecc71",
+      "<b>Tavuk Standı</b><br>Izgara Tavuk & Dürüm"
+    );
   </script>
 </body>
 </html>
