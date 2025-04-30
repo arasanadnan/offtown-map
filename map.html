@@ -11,6 +11,17 @@
       margin: 0;
       padding: 0;
     }
+
+    .stand-label {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 5px;
+      padding: 3px 7px;
+      font-weight: bold;
+      color: #1d3f72;
+      border: 1px solid #1d3f72;
+      font-size: 13px;
+      box-shadow: 0 0 4px rgba(0,0,0,0.2);
+    }
   </style>
 </head>
 <body>
@@ -18,15 +29,15 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Harita merkezini Sabancı Üniversitesi ve Ana Sahne'ye odakla
+    // Haritayı Ana Sahne'ye odakla
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
-    // Esri World Imagery (Uydu Harita) katmanı
+    // Uydu görünüm katmanı
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // GPS ile kullanıcının konumunu göster
+    // Kullanıcının konumunu göster
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -36,32 +47,25 @@
       });
     }
 
+    // 🎤 Ana Sahne etiketi
     L.marker([40.891139, 29.377444])
-  .addTo(map)
-  .bindTooltip("🎤 Ana Sahne", {
-    permanent: true,
-    direction: "top",
-    className: "stand-label"
-  })
-  .openTooltip();
+      .addTo(map)
+      .bindTooltip("🎤 Ana Sahne", {
+        permanent: true,
+        direction: "top",
+        className: "stand-label"
+      })
+      .openTooltip();
 
-    L.rectangle(anaSahneAlan, {
-      color: "#e60000",
-      weight: 2,
-      fillColor: "#ff4d4d",
-      fillOpacity: 0.6
-    }).addTo(map)
-      .bindPopup("<b>Ana Sahne</b><br>DJ ve Konserler");
-
+    // 🏦 İş Bankası etiketi
     L.marker([40.891427, 29.379045])
-  .addTo(map)
-  .bindTooltip("🏦 İş Bankası", {
-    permanent: true,
-    direction: "top",
-    className: "stand-label"
-  })
-  .openTooltip();
-    
+      .addTo(map)
+      .bindTooltip("🏦 İş Bankası", {
+        permanent: true,
+        direction: "top",
+        className: "stand-label"
+      })
+      .openTooltip();
   </script>
 </body>
 </html>
