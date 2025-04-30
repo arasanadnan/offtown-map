@@ -4,7 +4,11 @@
   <title>Festival Haritası - Uydu Görünüm</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Leaflet Harita CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Dahili CSS -->
   <style>
     html, body, #map {
       height: 100%;
@@ -27,12 +31,14 @@
 <body>
   <div id="map"></div>
 
+  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
   <script>
-    // Haritayı Ana Sahne'ye odakla
+    // Haritayı merkezle
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
-    // Uydu görünüm katmanı
+    // Uydu görünümü (Esri)
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri'
     }).addTo(map);
