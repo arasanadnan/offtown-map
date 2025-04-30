@@ -18,15 +18,14 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Haritayı merkeze al
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
-    // Uydu görünüm (Esri)
+    // Uydu görüntü
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // Kullanıcının konumu
+    // GPS
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -36,19 +35,14 @@
       });
     }
 
-    // 🎤 Ana Sahne ikonu
+    // İkon tanımları
     const anaSahneIcon = L.icon({
       iconUrl: 'https://cdn-icons-png.flaticon.com/512/727/727245.png',
       iconSize: [36, 36],
-      iconAnchor: [18, 36], // alt ortadan yerleştir
+      iconAnchor: [18, 36],
       popupAnchor: [0, -36]
     });
 
-    L.marker([40.891139, 29.377444], { icon: anaSahneIcon })
-      .addTo(map)
-      .bindPopup("<b>Ana Sahne</b><br>DJ ve Performans");
-
-    // 🏦 İş Bankası ikonu
     const bankaIcon = L.icon({
       iconUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
       iconSize: [36, 36],
@@ -56,9 +50,42 @@
       popupAnchor: [0, -36]
     });
 
+    const pastaIcon = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/1046/1046784.png',
+      iconSize: [36, 36],
+      iconAnchor: [18, 36],
+      popupAnchor: [0, -36]
+    });
+
+    const radyoIcon = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/727/727240.png',
+      iconSize: [36, 36],
+      iconAnchor: [18, 36],
+      popupAnchor: [0, -36]
+    });
+
+    const tavukIcon = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/2718/2718224.png',
+      iconSize: [36, 36],
+      iconAnchor: [18, 36],
+      popupAnchor: [0, -36]
+    });
+
+    // Markerlar
+    L.marker([40.891139, 29.377444], { icon: anaSahneIcon })
+      .addTo(map).bindPopup("<b>Ana Sahne</b><br>DJ ve Performans");
+
     L.marker([40.891427, 29.379045], { icon: bankaIcon })
-      .addTo(map)
-      .bindPopup("<b>İş Bankası</b>");
+      .addTo(map).bindPopup("<b>İş Bankası</b>");
+
+    L.marker([40.891056, 29.378616], { icon: pastaIcon })
+      .addTo(map).bindPopup("<b>Pasta La Vista</b><br>İtalyan Mutfağı");
+
+    L.marker([40.891033, 29.379149], { icon: radyoIcon })
+      .addTo(map).bindPopup("<b>RadyoTown</b><br>Canlı Yayın ve Müzik");
+
+    L.marker([40.890967, 29.378613], { icon: tavukIcon })
+      .addTo(map).bindPopup("<b>Tavuk Standı</b><br>Izgara Tavuk & Dürüm");
   </script>
 </body>
 </html>
