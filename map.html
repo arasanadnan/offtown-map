@@ -18,12 +18,15 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
+    // Haritayı Sabancı Üniversitesi çevresine kur
     const map = L.map('map').setView([40.8936, 29.3793], 17);
 
+    // OpenStreetMap katmanı
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap katkıcıları'
     }).addTo(map);
 
+    // Kullanıcının GPS konumunu göster
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -37,8 +40,10 @@
     } else {
       alert("Tarayıcınız konum özelliğini desteklemiyor.");
     }
+
+    // 📍 Ana Sahne Marker'ı
     L.marker([40.89125, 29.37736]).addTo(map)
-  .bindPopup("<b>Ana Sahne</b><br>DJ ve Konser Alanı");
+      .bindPopup("<b>Ana Sahne</b><br>DJ ve Konser Alanı");
   </script>
 </body>
 </html>
