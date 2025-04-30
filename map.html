@@ -1,49 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Festival Haritası - Uydu Görünüm</title>
+  <title>Festival Haritası - Özel İkonlarla</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Leaflet Harita CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-  <!-- Dahili CSS -->
   <style>
     html, body, #map {
       height: 100%;
       margin: 0;
       padding: 0;
     }
-
-    .stand-label {
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 5px;
-      padding: 3px 7px;
-      font-weight: bold;
-      color: #1d3f72;
-      border: 1px solid #1d3f72;
-      font-size: 13px;
-      box-shadow: 0 0 4px rgba(0,0,0,0.2);
-    }
   </style>
 </head>
 <body>
   <div id="map"></div>
 
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
   <script>
-    // Haritayı merkezle
+    // Haritayı merkeze al
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
-    // Uydu görünümü (Esri)
+    // Uydu görünüm (Esri)
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // Kullanıcının konumunu göster
+    // Kullanıcının konumu
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -53,25 +36,29 @@
       });
     }
 
-    // 🎤 Ana Sahne etiketi
-    L.marker([40.891139, 29.377444])
-      .addTo(map)
-      .bindTooltip("🎤 Ana Sahne", {
-        permanent: true,
-        direction: "top",
-        className: "stand-label"
-      })
-      .openTooltip();
+    // 🎤 Ana Sahne ikonu
+    const anaSahneIcon = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/727/727245.png',
+      iconSize: [36, 36],
+      iconAnchor: [18, 36], // alt ortadan yerleştir
+      popupAnchor: [0, -36]
+    });
 
-    // 🏦 İş Bankası etiketi
-    L.marker([40.891427, 29.379045])
+    L.marker([40.891139, 29.377444], { icon: anaSahneIcon })
       .addTo(map)
-      .bindTooltip("🏦 İş Bankası", {
-        permanent: true,
-        direction: "top",
-        className: "stand-label"
-      })
-      .openTooltip();
+      .bindPopup("<b>Ana Sahne</b><br>DJ ve Performans");
+
+    // 🏦 İş Bankası ikonu
+    const bankaIcon = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+      iconSize: [36, 36],
+      iconAnchor: [18, 36],
+      popupAnchor: [0, -36]
+    });
+
+    L.marker([40.891427, 29.379045], { icon: bankaIcon })
+      .addTo(map)
+      .bindPopup("<b>İş Bankası</b>");
   </script>
 </body>
 </html>
