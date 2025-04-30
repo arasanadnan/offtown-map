@@ -52,6 +52,16 @@
       fillOpacity: 0.6
     }).addTo(map)
       .bindPopup("<b>Ana Sahne</b><br>DJ ve Konserler");
+
+    L.marker([40.891427, 29.379045])
+  .addTo(map)
+  .bindTooltip("🏦 İş Bankası", {
+    permanent: true,
+    direction: "top",
+    className: "stand-label"
+  })
+  .openTooltip();
+    
   </script>
 </body>
 </html>
