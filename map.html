@@ -75,8 +75,9 @@
     // 🔽 Açıları buradan değiştirebilirsin
 
     // 🎤 Ana Sahne – 25×25m – 30°
+    const anaSahneCenter = [40.891249, 29.377444];
     addRotatedBox(
-      [40.891249, 29.377444],
+      anaSahneCenter,
       35, 20,
       75, // Ana Sahne açısı
       "#e60000",
@@ -84,8 +85,9 @@
     );
 
     // 🏦 İş Bankası – 10×10m – 0°
+    const isBankasiCenter = [40.891457, 29.379045];
     addRotatedBox(
-      [40.891457, 29.379045],
+      isBankasiCenter,
       20, 15,
       -20, // İş Bankası açısı
       "#1d3f72",
@@ -93,8 +95,9 @@
     );
 
     // 🍝 Pasta La Vista – 10×10m – 45°
+    const pastaLaVistaCenter = [40.891032, 29.378616];
     addRotatedBox(
-      [40.891032, 29.378616],
+      pastaLaVistaCenter,
       10, 6,
       75, // Pasta La Vista açısı
       "#e67e22",
@@ -102,8 +105,9 @@
     );
 
     // 📻 RadyoTown – 10×10m – -20°
+    const radyoTownCenter = [40.891025, 29.379149];
     addRotatedBox(
-      [40.891025, 29.379149],
+      radyoTownCenter,
       20, 10,
       -20, // RadyoTown açısı
       "#9b59b6",
@@ -111,8 +115,9 @@
     );
 
     // 🍗 Tavuk Standı – 10×10m – 60°
+    const tavukStandiCenter = [40.890900, 29.378660];
     addRotatedBox(
-      [40.89090, 29.37866],
+      tavukStandiCenter,
       10, 6,
       75, // Tavuk Standı açısı
       "#2ecc71",
@@ -120,17 +125,19 @@
     );
 
     // 🎲 HOB – 10×10m – 10°
+    const hobCenter = [40.891516, 29.37845];
     addRotatedBox(
-      [40.891516, 29.37845],
+      hobCenter,
       10, 10,
       75, // HOB açısı
       "#34495e",
-      "<b>HOB</b><br>PLACEHOLDER"
+      "<b>HOB</b><br>Oyun Atölyesi"
     );
 
     // 🥩 Köfteci Ramiz – 12×8m – 25°
+    const kofteciRamizCenter = [40.891392, 29.37846];
     addRotatedBox(
-      [40.891392, 29.37846],
+      kofteciRamizCenter,
       10, 6,
       75, // Köfteci Ramiz açısı
       "#d35400",
@@ -138,8 +145,9 @@
     );
 
     // 🍕 Pasaport Pizza – 10×6m – 60°
+    const pasaportPizzaCenter = [40.8908, 29.3787];
     addRotatedBox(
-      [40.8908, 29.3787],
+      pasaportPizzaCenter,
       10, 6,
       75, // Pasaport Pizza açısı
       "#f39c12",
@@ -147,41 +155,54 @@
     );
 
     // 🥔 PotatoLab – 10×6m – 40°
+    const potatoLabCenter = [40.891224, 29.379289];
     addRotatedBox(
-      [40.891224, 29.379289],
+      potatoLabCenter,
       10, 6,
       -20, // PotatoLab açısı
       "#bdc3c7",
       "<b>PotatoLab</b><br>Patateeees!"
     );
+    // 🕹️ Maximum Gaming – 10×10m – 45°
+    const maximumGamingCenter = [40.890860, 29.377793];
+    addRotatedBox(
+      maximumGamingCenter,
+      20, 10,
+      -20, // Maximum Gaming açısı
+      "#8e44ad",
+      "<b>Maximum Gaming</b><br>Espor & Oyun Alanı"
+    );
 
-    L.marker([40.891249, 29.377444], { icon: L.divIcon({ className: 'custom-label', html: '🎤', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(anaSahneCenter, { icon: L.divIcon({ className: 'custom-label', html: '🎤', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Ana Sahne</b><br>DJ ve Performans Alanı");
-    L.marker([40.891457, 29.379045], { icon: L.divIcon({ className: 'custom-label', html: '🏦', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(isBankasiCenter, { icon: L.divIcon({ className: 'custom-label', html: '🏦', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>İş Bankası</b>");
-    L.marker([40.891032, 29.378616], { icon: L.divIcon({ className: 'custom-label', html: '🍝', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(pastaLaVistaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍝', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Pasta La Vista</b><br>İtalyan Mutfağı");
-    L.marker([40.891025, 29.379149], { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(radyoTownCenter, { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>RadyoTown</b><br>Canlı Yayın & DJ");
-    L.marker([40.89090, 29.37866], { icon: L.divIcon({ className: 'custom-label', html: '🍗', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(tavukStandiCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍗', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Tavuk Standı</b><br>Çıtır Tavuk");
-    L.marker([40.891516, 29.37845], { icon: L.divIcon({ className: 'custom-label', html: '🎲', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(hobCenter, { icon: L.divIcon({ className: 'custom-label', html: '🎲', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
-      .bindPopup("<b>HOB</b><br>PLACEHOLDER");
-    L.marker([40.891392, 29.37846], { icon: L.divIcon({ className: 'custom-label', html: '🥩', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .bindPopup("<b>HOB</b><br>Oyun Atölyesi");
+    L.marker(kofteciRamizCenter, { icon: L.divIcon({ className: 'custom-label', html: '🥩', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Köfteci Ramiz</b><br>Izgara Köfte");
-    L.marker([40.8908, 29.3787], { icon: L.divIcon({ className: 'custom-label', html: '🍕', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(pasaportPizzaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍕', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Pasaport Pizza</b><br>Hızlı Pizza Servisi");
-    L.marker([40.891224, 29.379289], { icon: L.divIcon({ className: 'custom-label', html: '🥔', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(potatoLabCenter, { icon: L.divIcon({ className: 'custom-label', html: '🥔', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>PotatoLab</b><br>Patateeees!");
+    L.marker(maximumGamingCenter, { icon: L.divIcon({ className: 'custom-label', html: '🕹️', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Maximum Gaming</b><br>Espor & Oyun Alanı");
   </script>
 </body>
 </html>
