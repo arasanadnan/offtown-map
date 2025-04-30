@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Festival Haritası - Özel İkonlarla</title>
+  <title>Festival Haritası - Alan Göstergeli</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -20,12 +20,12 @@
   <script>
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
-    // Uydu görüntü
+    // Uydu harita katmanı (Esri)
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // GPS
+    // Kullanıcı konumu
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -35,57 +35,65 @@
       });
     }
 
-    // İkon tanımları
-    const anaSahneIcon = L.icon({
-      iconUrl: 'https://cdn-icons-png.flaticon.com/512/727/727245.png',
-      iconSize: [36, 36],
-      iconAnchor: [18, 36],
-      popupAnchor: [0, -36]
-    });
+    // 📦 Ana Sahne Alanı
+    L.rectangle([
+      [40.891125, 29.37730],
+      [40.891155, 29.37751]
+    ], {
+      color: "#e60000",
+      weight: 2,
+      fillColor: "#e74c3c",
+      fillOpacity: 0.6
+    }).addTo(map)
+      .bindPopup("<b>Ana Sahne</b><br>DJ ve Performans Alanı");
 
-    const bankaIcon = L.icon({
-      iconUrl: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-      iconSize: [36, 36],
-      iconAnchor: [18, 36],
-      popupAnchor: [0, -36]
-    });
+    // 🏦 İş Bankası Alanı
+    L.rectangle([
+      [40.891417, 29.379035],
+      [40.891437, 29.379065]
+    ], {
+      color: "#1d3f72",
+      weight: 2,
+      fillColor: "#3498db",
+      fillOpacity: 0.6
+    }).addTo(map)
+      .bindPopup("<b>İş Bankası</b>");
 
-    const pastaIcon = L.icon({
-      iconUrl: 'https://cdn-icons-png.flaticon.com/512/1046/1046784.png',
-      iconSize: [36, 36],
-      iconAnchor: [18, 36],
-      popupAnchor: [0, -36]
-    });
+    // 🍝 Pasta La Vista
+    L.rectangle([
+      [40.891051, 29.378611],
+      [40.891061, 29.378621]
+    ], {
+      color: "#d35400",
+      weight: 2,
+      fillColor: "#e67e22",
+      fillOpacity: 0.6
+    }).addTo(map)
+      .bindPopup("<b>Pasta La Vista</b><br>İtalyan Mutfağı");
 
-    const radyoIcon = L.icon({
-      iconUrl: 'https://cdn-icons-png.flaticon.com/512/727/727240.png',
-      iconSize: [36, 36],
-      iconAnchor: [18, 36],
-      popupAnchor: [0, -36]
-    });
+    // 📻 RadyoTown
+    L.rectangle([
+      [40.891028, 29.379144],
+      [40.891038, 29.379154]
+    ], {
+      color: "#8e44ad",
+      weight: 2,
+      fillColor: "#9b59b6",
+      fillOpacity: 0.6
+    }).addTo(map)
+      .bindPopup("<b>RadyoTown</b><br>Canlı Yayın & DJ");
 
-    const tavukIcon = L.icon({
-      iconUrl: 'https://cdn-icons-png.flaticon.com/512/2718/2718224.png',
-      iconSize: [36, 36],
-      iconAnchor: [18, 36],
-      popupAnchor: [0, -36]
-    });
-
-    // Markerlar
-    L.marker([40.891139, 29.377444], { icon: anaSahneIcon })
-      .addTo(map).bindPopup("<b>Ana Sahne</b><br>DJ ve Performans");
-
-    L.marker([40.891427, 29.379045], { icon: bankaIcon })
-      .addTo(map).bindPopup("<b>İş Bankası</b>");
-
-    L.marker([40.891056, 29.378616], { icon: pastaIcon })
-      .addTo(map).bindPopup("<b>Pasta La Vista</b><br>İtalyan Mutfağı");
-
-    L.marker([40.891033, 29.379149], { icon: radyoIcon })
-      .addTo(map).bindPopup("<b>RadyoTown</b><br>Canlı Yayın ve Müzik");
-
-    L.marker([40.890967, 29.378613], { icon: tavukIcon })
-      .addTo(map).bindPopup("<b>Tavuk Standı</b><br>Izgara Tavuk & Dürüm");
+    // 🍗 Tavuk Standı
+    L.rectangle([
+      [40.890962, 29.378608],
+      [40.890972, 29.378618]
+    ], {
+      color: "#27ae60",
+      weight: 2,
+      fillColor: "#2ecc71",
+      fillOpacity: 0.6
+    }).addTo(map)
+      .bindPopup("<b>Tavuk Standı</b><br>Izgara & Dürüm");
   </script>
 </body>
 </html>
