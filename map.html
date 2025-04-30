@@ -36,11 +36,15 @@
       });
     }
 
-    // Ana Sahne için renkli dikdörtgen (alan)
-    const anaSahneAlan = [
-      [40.89120, 29.37720], // sol alt
-      [40.89130, 29.37752]  // sağ üst
-    ];
+    // Ana Sahne etiketi olarak marker ekle
+L.marker([40.532885, 29.223825])  // merkez konum
+  .addTo(map)
+  .bindTooltip("🎤 Ana Sahne", {
+    permanent: true,
+    direction: "top",
+    className: "stand-label"
+  })
+  .openTooltip();
 
     L.rectangle(anaSahneAlan, {
       color: "#e60000",
