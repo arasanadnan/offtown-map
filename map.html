@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Festival Haritası - Uydu Görünüm</title>
+  <title>Festival Haritası - Kutucuk Çizme</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css"/>
   <style>
     html, body, #map {
       height: 100%;
       margin: 0;
       padding: 0;
-    }
-    .label-text {
-      background-color: rgba(255, 77, 77, 0.75);
-      padding: 2px 6px;
-      border-radius: 4px;
-      color: white;
-      font-weight: bold;
-      font-size: 12px;
-      white-space: nowrap;
     }
   </style>
 </head>
@@ -26,45 +18,53 @@
   <div id="map"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
   <script>
     const map = L.map('map').setView([40.53288, 29.22383], 20);
 
-    // Esri uydu görünümü
+    // Esri World Imagery (Uydu Harita)
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // GPS konumu
+    // GPS konumunu göster
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
+      navigator.geolocation.getCurrentPosition(pos => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
         L.marker([lat, lng]).addTo(map)
           .bindPopup("Konumunuz").openPopup();
       });
     }
 
-    // 📦 Ana Sahne Kutusu
-    const anaSahneAlan = [
-      [40.5328, 29.2238], // sol alt
-      [40.5329, 29.2238]  // sağ üst
-    ];
+    // Çizim kontrolü
+    const drawnItems = new L.FeatureGroup();
+    map.addLayer(drawnItems);
 
-    L.rectangle(anaSahneAlan, {
-      color: "#e60000",
-      weight: 2,
-      fillColor: "#ff4d4d",
-      fillOpacity: 0.5
-    }).addTo(map);
-
-    // ✏️ Ana Sahne Yazısı (tam ortasına)
-    const label = L.divIcon({
-      className: 'label-text',
-      html: 'Ana Sahne',
-      iconSize: [100, 20]
+    const drawControl = new L.Control.Draw({
+      edit: {
+        featureGroup: drawnItems
+      },
+      draw: {
+        polygon: false,
+        polyline: false,
+        circle: false,
+        circlemarker: false,
+        marker: false,
+        rectangle: {
+          shapeOptions: {
+            color: '#ff0000'
+          }
+        }
+      }
     });
+    map.addControl(drawControl);
 
-    L.marker([40.532885, 29.223825], { icon: label, interactive: false }).addTo(map);
+    map.on(L.Draw.Event.CREATED, function (e) {
+      const layer = e.layer;
+      drawnItems.addLayer(layer);
+      console.log("Yeni kutu koordinatlari:", layer.getBounds());
+    });
   </script>
 </body>
 </html>
