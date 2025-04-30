@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Festival Haritası - Alan Göstergeli</title>
+  <title>Festival Haritası - Döndürülebilir Kutular</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -20,12 +20,12 @@
   <script>
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
-    // Uydu harita katmanı (Esri)
+    // Uydu görüntüsü (Esri)
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
       attribution: 'Tiles © Esri'
     }).addTo(map);
 
-    // Kullanıcı konumu
+    // GPS ile konum göster
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
@@ -35,65 +35,57 @@
       });
     }
 
-    // 📦 Ana Sahne Alanı
-    L.rectangle([
-      [40.891125, 29.37730],
-      [40.891155, 29.37751]
-    ], {
-      color: "#e60000",
-      weight: 2,
-      fillColor: "#e74c3c",
-      fillOpacity: 0.6
-    }).addTo(map)
-      .bindPopup("<b>Ana Sahne</b><br>DJ ve Performans Alanı");
+    // 🔧 Dönüşüm yardımcı fonksiyonları
+    function degToRad(deg) {
+      return deg * (Math.PI / 180);
+    }
 
-    // 🏦 İş Bankası Alanı
-    L.rectangle([
-      [40.891417, 29.379035],
-      [40.891437, 29.379065]
-    ], {
-      color: "#1d3f72",
-      weight: 2,
-      fillColor: "#3498db",
-      fillOpacity: 0.6
-    }).addTo(map)
-      .bindPopup("<b>İş Bankası</b>");
+    function rotateAround(centerLat, centerLng, offsetX, offsetY, angleDegrees) {
+      const angle = degToRad(angleDegrees);
+
+      const dLat = (offsetY * Math.cos(angle) - offsetX * Math.sin(angle)) / 111320;
+      const dLng = (offsetY * Math.sin(angle) + offsetX * Math.cos(angle)) / (111320 * Math.cos(degToRad(centerLat)));
+
+      return [centerLat + dLat, centerLng + dLng];
+    }
+
+    function drawRotatedBox(center, angle, color, popupText) {
+      const halfWidth = 2.5;   // ❗ kutunun yarı genişliği (5m kutu)
+      const halfHeight = 2.5;  // ❗ kutunun yarı yüksekliği
+
+      const corners = [
+        rotateAround(center[0], center[1], -halfWidth, -halfHeight, angle),
+        rotateAround(center[0], center[1], -halfWidth, halfHeight, angle),
+        rotateAround(center[0], center[1], halfWidth, halfHeight, angle),
+        rotateAround(center[0], center[1], halfWidth, -halfHeight, angle)
+      ];
+
+      L.polygon(corners, {
+        color: color,
+        fillColor: color,
+        fillOpacity: 0.6
+      }).addTo(map)
+        .bindPopup(popupText);
+    }
+
+    // ❗❗❗ BU SATIRI DEĞİŞTİR → tüm kutuların dönüş açısı burada ayarlanır
+    const angle = 45; // derece (örneğin 30 yaparsan hepsi 30° döner)
+
+    // 🎤 Ana Sahne
+    drawRotatedBox([40.891139, 29.377444], angle, "#e74c3c", "<b>Ana Sahne</b><br>DJ ve Performans");
+
+    // 🏦 İş Bankası
+    drawRotatedBox([40.891427, 29.379045], angle, "#3498db", "<b>İş Bankası</b>");
 
     // 🍝 Pasta La Vista
-    L.rectangle([
-      [40.891051, 29.378611],
-      [40.891061, 29.378621]
-    ], {
-      color: "#d35400",
-      weight: 2,
-      fillColor: "#e67e22",
-      fillOpacity: 0.6
-    }).addTo(map)
-      .bindPopup("<b>Pasta La Vista</b><br>İtalyan Mutfağı");
+    drawRotatedBox([40.891056, 29.378616], angle, "#e67e22", "<b>Pasta La Vista</b><br>İtalyan Mutfağı");
 
     // 📻 RadyoTown
-    L.rectangle([
-      [40.891028, 29.379144],
-      [40.891038, 29.379154]
-    ], {
-      color: "#8e44ad",
-      weight: 2,
-      fillColor: "#9b59b6",
-      fillOpacity: 0.6
-    }).addTo(map)
-      .bindPopup("<b>RadyoTown</b><br>Canlı Yayın & DJ");
+    drawRotatedBox([40.891033, 29.379149], angle, "#9b59b6", "<b>RadyoTown</b><br>Canlı Yayın & DJ");
 
     // 🍗 Tavuk Standı
-    L.rectangle([
-      [40.890962, 29.378608],
-      [40.890972, 29.378618]
-    ], {
-      color: "#27ae60",
-      weight: 2,
-      fillColor: "#2ecc71",
-      fillOpacity: 0.6
-    }).addTo(map)
-      .bindPopup("<b>Tavuk Standı</b><br>Izgara & Dürüm");
+    drawRotatedBox([40.890967, 29.378613], angle, "#2ecc71", "<b>Tavuk Standı</b><br>Izgara & Dürüm");
+
   </script>
 </body>
 </html>
