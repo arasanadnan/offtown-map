@@ -18,32 +18,42 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // Haritayı Sabancı Üniversitesi çevresine kur
-    const map = L.map('map').setView([40.8936, 29.3793], 17);
+    // Harita merkez: Sabancı Üniversitesi çevresi
+    const map = L.map('map').setView([40.89125, 29.37736], 18);
 
-    // OpenStreetMap katmanı
+    // OpenStreetMap arka plan
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap katkıcıları'
+      attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Kullanıcının GPS konumunu göster
+    // GPS ile kullanıcı konumu
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
         L.marker([lat, lng]).addTo(map)
           .bindPopup("Konumunuz").openPopup();
-        map.setView([lat, lng], 17);
-      }, () => {
-        alert("Konum izni verilmedi.");
       });
-    } else {
-      alert("Tarayıcınız konum özelliğini desteklemiyor.");
     }
 
-    // 📍 Ana Sahne Marker'ı
+    // 📦 Ana Sahne Alanı (kutu)
+    const anaSahneAlan = [
+      [40.89120, 29.37720], // sol alt köşe
+      [40.89130, 29.37752]  // sağ üst köşe
+    ];
+
+    L.rectangle(anaSahneAlan, {
+      color: "#e60000",        // çerçeve rengi
+      weight: 2,
+      fillColor: "#ff4d4d",    // dolgu rengi
+      fillOpacity: 0.6
+    }).addTo(map)
+      .bindPopup("<b>Ana Sahne</b><br>DJ ve Konserler");
+
+    // 🔘 Alanın ortasına yazı gibi duracak marker
     L.marker([40.89125, 29.37736]).addTo(map)
-      .bindPopup("<b>Ana Sahne</b><br>DJ ve Konser Alanı");
+      .bindPopup("Ana Sahne");
+
   </script>
 </body>
 </html>
