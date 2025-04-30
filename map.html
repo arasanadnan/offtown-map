@@ -155,15 +155,33 @@
       "<b>PotatoLab</b><br>Patateeees!"
     );
 
-    L.marker([40.891249, 29.377444], { icon: L.divIcon({ className: 'custom-label', html: '🎤', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
-    L.marker([40.891457, 29.379045], { icon: L.divIcon({ className: 'custom-label', html: '🏦', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
-    L.marker([40.891032, 29.378616], { icon: L.divIcon({ className: 'custom-label', html: '🍝', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
-    L.marker([40.891025, 29.379149], { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
-    L.marker([40.89090, 29.37866], { icon: L.divIcon({ className: 'custom-label', html: '🍗', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
-    L.marker([40.891516, 29.37845], { icon: L.divIcon({ className: 'custom-label', html: '🎲', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
-    L.marker([40.891392, 29.37846], { icon: L.divIcon({ className: 'custom-label', html: '🥩', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
-    L.marker([40.8908, 29.3787], { icon: L.divIcon({ className: 'custom-label', html: '🍕', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
-    L.marker([40.891224, 29.379289], { icon: L.divIcon({ className: 'custom-label', html: '🥔', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
+    L.marker([40.891249, 29.377444], { icon: L.divIcon({ className: 'custom-label', html: '🎤', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Ana Sahne</b><br>DJ ve Performans Alanı");
+    L.marker([40.891457, 29.379045], { icon: L.divIcon({ className: 'custom-label', html: '🏦', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>İş Bankası</b>");
+    L.marker([40.891032, 29.378616], { icon: L.divIcon({ className: 'custom-label', html: '🍝', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Pasta La Vista</b><br>İtalyan Mutfağı");
+    L.marker([40.891025, 29.379149], { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>RadyoTown</b><br>Canlı Yayın & DJ");
+    L.marker([40.89090, 29.37866], { icon: L.divIcon({ className: 'custom-label', html: '🍗', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Tavuk Standı</b><br>Çıtır Tavuk");
+    L.marker([40.891516, 29.37845], { icon: L.divIcon({ className: 'custom-label', html: '🎲', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>HOB</b><br>PLACEHOLDER");
+    L.marker([40.891392, 29.37846], { icon: L.divIcon({ className: 'custom-label', html: '🥩', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Köfteci Ramiz</b><br>Izgara Köfte");
+    L.marker([40.8908, 29.3787], { icon: L.divIcon({ className: 'custom-label', html: '🍕', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Pasaport Pizza</b><br>Hızlı Pizza Servisi");
+    L.marker([40.891224, 29.379289], { icon: L.divIcon({ className: 'custom-label', html: '🥔', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>PotatoLab</b><br>Patateeees!");
   </script>
 </body>
 </html>
