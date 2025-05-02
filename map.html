@@ -121,6 +121,43 @@
       iconAnchor: [20, 20]
     });
 
+    const renaultLogo = L.icon({
+      iconUrl: 'renault.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const asusLogo = L.icon({
+      iconUrl: 'asus.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const paulKenzieLogo = L.icon({
+      iconUrl: 'paul.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const ramizLogo = L.icon({
+      iconUrl: 'ramiz.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    // Yeni logolar
+    const hobLogo = L.icon({
+      iconUrl: 'hob.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const maximumGencLogo = L.icon({
+      iconUrl: 'maximum_genc.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
     // 📦 Her kutuya kendi açısını burada veriyoruz
     // 🔽 Açıları buradan değiştirebilirsin
 
@@ -180,7 +217,7 @@
       hobCenter,
       10, 10,
       75, // HOB açısı
-      "#34495e",
+      "#ffffff",
       "<b>HOB</b><br>ISTANBULUN EN IYI BURGERI"
     );
 
@@ -243,28 +280,36 @@
       "<b>Asus</b>"
     );
 
-    L.marker(renaultCenter, {
-      icon: L.divIcon({
-        className: 'custom-label',
-        html: '🚗',
-        iconSize: [20, 20],
-        iconAnchor: [10, 10]
-      })
-    }).addTo(map).bindPopup("<b>Renault</b>");
+    // 👕 Paul Kenzie – 10×6m – 75°
+    const paulKenzieCenter = [40.891074, 29.378873];
+    addRotatedBox(
+      paulKenzieCenter,
+      10, 6,
+      75, // Paul Kenzie açısı
+      "#ff69b4",
+      "<b>Paul Kenzie</b><br>Moda & Aksesuar"
+    );
 
-    L.marker(asusCenter, {
-      icon: L.divIcon({
-        className: 'custom-label',
-        html: '🖥️',
-        iconSize: [20, 20],
-        iconAnchor: [10, 10]
-      })
-    }).addTo(map).bindPopup("<b>Asus</b>");
+    L.marker(renaultCenter, { icon: renaultLogo })
+      .addTo(map)
+      .bindPopup("<b>Renault</b>");
+
+    L.marker(asusCenter, { icon: asusLogo })
+      .addTo(map)
+      .bindPopup("<b>Asus</b>");
+
+    L.marker(paulKenzieCenter, { icon: paulKenzieLogo })
+      .addTo(map)
+      .bindPopup("<b>Paul Kenzie</b><br>Moda & Aksesuar");
+
+    L.marker(kofteciRamizCenter, { icon: ramizLogo })
+      .addTo(map)
+      .bindPopup("<b>Köfteci Ramiz</b><br>Izgara Köfte");
 
     L.marker(anaSahneCenter, { icon: anaSahneLogo })
       .addTo(map)
       .bindPopup("<b>Ana Sahne</b><br>DJ ve Performans Alanı");
-    L.marker(isBankasiCenter, { icon: L.divIcon({ className: 'custom-label', html: '🏦', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(isBankasiCenter, { icon: maximumGencLogo })
       .addTo(map)
       .bindPopup("<b>İş Bankası</b>");
     L.marker(pastaLaVistaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍝', iconSize: [20, 20], iconAnchor: [10, 10] }) })
@@ -276,19 +321,16 @@
     L.marker(tavukStandiCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍗', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Tavuk Standı</b><br>Çıtır Tavuk");
-    L.marker(hobCenter, { icon: L.divIcon({ className: 'custom-label', html: '🎲', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(hobCenter, { icon: hobLogo })
       .addTo(map)
       .bindPopup("<b>HOB</b><br>Oyun Atölyesi");
-    L.marker(kofteciRamizCenter, { icon: L.divIcon({ className: 'custom-label', html: '🥩', iconSize: [20, 20], iconAnchor: [10, 10] }) })
-      .addTo(map)
-      .bindPopup("<b>Köfteci Ramiz</b><br>Izgara Köfte");
     L.marker(pasaportPizzaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍕', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Pasaport Pizza</b><br>Hızlı Pizza Servisi");
     L.marker(potatoLabCenter, { icon: L.divIcon({ className: 'custom-label', html: '🥔', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>PotatoLab</b><br>Patateeees!");
-    L.marker(maximumGamingCenter, { icon: L.divIcon({ className: 'custom-label', html: '🕹️', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(maximumGamingCenter, { icon: maximumGencLogo })
       .addTo(map)
       .bindPopup("<b>Maximum Gaming</b><br>Espor & Oyun Alanı");
     // 🔥 Burn – 10×6m – 75°
