@@ -23,41 +23,47 @@
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       border-top: 1px solid #ddd;
       display: flex;
       overflow-x: auto;
-      padding: 12px;
-      gap: 12px;
+      padding: 14px;
+      gap: 14px;
       z-index: 9999;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.05);
+      justify-content: center;
     }
 
     .stand-menu button {
-      background: #f5f5f5;
-      border: 1px solid #ddd;
-      padding: 8px 14px;
+      background: linear-gradient(145deg, #f0f0f0, #ffffff);
+      border: 1px solid #ccc;
+      padding: 10px 16px;
       border-radius: 30px;
       font-weight: 500;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.3s, transform 0.2s;
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      font-size: 14px;
+      color: #444;
     }
 
     .stand-menu button:hover {
-      background: #eaeaea;
-      transform: translateY(-2px);
+      background: linear-gradient(145deg, #e8e8e8, #ffffff);
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .stand-menu button img {
       vertical-align: middle;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      object-fit: cover;
     }
 
     .info-panel {
@@ -101,6 +107,8 @@
     .stand-polygon {
       filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
       transition: transform 0.2s ease, filter 0.3s ease;
+      stroke-linejoin: round;
+      stroke-linecap: round;
     }
 
     .stand-polygon:hover {
@@ -186,7 +194,7 @@
 
       L.polygon(corners, {
         color: "#333", // Soft border
-        weight: 2,
+        weight: 3,
         fillColor: color,
         fillOpacity: 0.85,
         opacity: 1,
@@ -331,7 +339,7 @@
       "<b>PotatoLab</b><br>Patateeees!"
     );
     // 🕹️ Maximum Gaming – 10×10m – 45°
-    const maximumGamingCenter = [40.882036, 29.377738];
+    const maximumGamingCenter = [40.890899, 29.377969];
     addRotatedBox(
       maximumGamingCenter,
       20, 10,
@@ -356,7 +364,7 @@
       asusCenter,
       10, 10,
       75, // Asus açısı
-      "#34495e",
+      "#ffffff",
       "<b>Asus</b>"
     );
 
@@ -364,7 +372,7 @@
     const paulKenzieCenter = [40.891074, 29.378873];
     addRotatedBox(
       paulKenzieCenter,
-      10, 6,
+      10, 10,
       75, // Paul Kenzie açısı
       "#ff69b4",
       "<b>Paul Kenzie</b><br>Moda & Aksesuar"
@@ -395,7 +403,7 @@
     L.marker(pastaLaVistaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍝', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Pasta La Vista</b><br>İtalyan Mutfağı");
-    L.marker(radyoTownCenter, { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(radyoTownCenter, { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [30, 30], iconAnchor: [15, 15] }) })
       .addTo(map)
       .bindPopup("<b>RadyoTown</b><br>Canlı Yayın & DJ");
     L.marker(tavukStandiCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍗', iconSize: [20, 20], iconAnchor: [10, 10] }) })
@@ -419,7 +427,7 @@
       burnCenter,
       10, 10,
       75, // Burn açısı
-      "#ff5733",
+      "#000000",
       "<b>Burn</b><br>Enerji İçeceği"
     );
 
