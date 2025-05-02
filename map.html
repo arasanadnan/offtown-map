@@ -18,10 +18,53 @@
       line-height: 20px;
       pointer-events: none;
     }
+    .stand-menu {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      border-top: 1px solid #ccc;
+      display: flex;
+      overflow-x: auto;
+      padding: 10px;
+      gap: 10px;
+      z-index: 9999;
+    }
+
+    .stand-menu button {
+      background: #eee;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .stand-menu button:hover {
+      background: #ddd;
+    }
   </style>
 </head>
 <body>
   <div id="map"></div>
+  <div id="standMenu" class="stand-menu">
+    <button data-lat="40.891249" data-lng="29.377444">Ana Sahne</button>
+    <button data-lat="40.891457" data-lng="29.379045">İş Bankası</button>
+    <button data-lat="40.891032" data-lng="29.378616">Pasta La Vista</button>
+    <button data-lat="40.891025" data-lng="29.379149">RadyoTown</button>
+    <button data-lat="40.890900" data-lng="29.378660">Tavuk Standı</button>
+    <button data-lat="40.891516" data-lng="29.37845">HOB</button>
+    <button data-lat="40.891392" data-lng="29.37846">Köfteci Ramiz</button>
+    <button data-lat="40.8908" data-lng="29.3787">Pasaport Pizza</button>
+    <button data-lat="40.891224" data-lng="29.379289">PotatoLab</button>
+    <button data-lat="40.890836" data-lng="29.377738">Maximum Gaming</button>
+    <button data-lat="40.890836" data-lng="29.377708">Renault</button>
+    <button data-lat="40.890962" data-lng="29.378449">Asus</button>
+    <button data-lat="40.891272" data-lng="29.378755">Burn</button>
+    <button data-lat="40.891074" data-lng="29.378873">Paul Kenzie</button>
+  </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     const map = L.map('map').setView([40.89125, 29.37736], 18);
@@ -70,6 +113,13 @@
         fillOpacity: 0.6
       }).addTo(map).bindPopup(popup);
     }
+
+    // Özel ikonlar
+    const anaSahneLogo = L.icon({
+      iconUrl: 'offtown_logo.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
 
     // 📦 Her kutuya kendi açısını burada veriyoruz
     // 🔽 Açıları buradan değiştirebilirsin
@@ -211,7 +261,7 @@
       })
     }).addTo(map).bindPopup("<b>Asus</b>");
 
-    L.marker(anaSahneCenter, { icon: L.divIcon({ className: 'custom-label', html: '🎤', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(anaSahneCenter, { icon: anaSahneLogo })
       .addTo(map)
       .bindPopup("<b>Ana Sahne</b><br>DJ ve Performans Alanı");
     L.marker(isBankasiCenter, { icon: L.divIcon({ className: 'custom-label', html: '🏦', iconSize: [20, 20], iconAnchor: [10, 10] }) })
@@ -228,7 +278,7 @@
       .bindPopup("<b>Tavuk Standı</b><br>Çıtır Tavuk");
     L.marker(hobCenter, { icon: L.divIcon({ className: 'custom-label', html: '🎲', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
-      .bindPopup("<b>HOB</b><br>ISTANBULUN EN IYI BURGERI");
+      .bindPopup("<b>HOB</b><br>Oyun Atölyesi");
     L.marker(kofteciRamizCenter, { icon: L.divIcon({ className: 'custom-label', html: '🥩', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Köfteci Ramiz</b><br>Izgara Köfte");
@@ -260,24 +310,20 @@
       })
     }).addTo(map).bindPopup("<b>Burn</b><br>Enerji İçeceği");
 
-    // 🎩 Paul Kenzie – 10×6m – 75°
-    const paulKenzieCenter = [40.891074, 29.378873];
-    addRotatedBox(
-      paulKenzieCenter,
-      10, 10,
-      75, // Paul Kenzie açısı
-      "#6c3483",
-      "<b>Paul Kenzie</b><br>Moda & Aksesuar"
-    );
+    document.querySelectorAll('#standMenu button').forEach(button => {
+      button.addEventListener('click', () => {
+        const lat = parseFloat(button.getAttribute('data-lat'));
+        const lng = parseFloat(button.getAttribute('data-lng'));
 
-    L.marker(paulKenzieCenter, {
-      icon: L.divIcon({
-        className: 'custom-label',
-        html: '🎩',
-        iconSize: [20, 20],
-        iconAnchor: [10, 10]
-      })
-    }).addTo(map).bindPopup("<b>Paul Kenzie</b><br>Moda & Aksesuar");
+        map.setView([lat, lng], 19);
+
+        map.eachLayer(layer => {
+          if (layer.getLatLng && layer.getLatLng().lat === lat && layer.getLatLng().lng === lng) {
+            layer.openPopup();
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
