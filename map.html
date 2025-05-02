@@ -164,7 +164,7 @@
       "<b>PotatoLab</b><br>Patateeees!"
     );
     // 🕹️ Maximum Gaming – 10×10m – 45°
-    const maximumGamingCenter = [40.890860, 29.377793];
+    const maximumGamingCenter = [40.882036, 29.377738];
     addRotatedBox(
       maximumGamingCenter,
       20, 10,
@@ -172,6 +172,44 @@
       "#8e44ad",
       "<b>Maximum Gaming</b><br>Espor & Oyun Alanı"
     );
+
+    // 🚗 Renault – 10×6m – 75°
+    const renaultCenter = [40.890836, 29.377708];
+    addRotatedBox(
+      renaultCenter,
+      10, 20,
+      75, // Renault açısı
+      "#ffd700",
+      "<b>Renault</b>"
+    );
+
+    // 🖥️ Asus – 10×6m – 75°
+    const asusCenter = [40.890962, 29.378449];
+    addRotatedBox(
+      asusCenter,
+      10, 10,
+      75, // Asus açısı
+      "#34495e",
+      "<b>Asus</b>"
+    );
+
+    L.marker(renaultCenter, {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🚗',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+      })
+    }).addTo(map).bindPopup("<b>Renault</b>");
+
+    L.marker(asusCenter, {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🖥️',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+      })
+    }).addTo(map).bindPopup("<b>Asus</b>");
 
     L.marker(anaSahneCenter, { icon: L.divIcon({ className: 'custom-label', html: '🎤', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
@@ -203,6 +241,24 @@
     L.marker(maximumGamingCenter, { icon: L.divIcon({ className: 'custom-label', html: '🕹️', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Maximum Gaming</b><br>Espor & Oyun Alanı");
+    // 🔥 Burn – 10×6m – 75°
+    const burnCenter = [40.891272, 29.378755];
+    addRotatedBox(
+      burnCenter,
+      10, 10,
+      75, // Burn açısı
+      "#ff5733",
+      "<b>Burn</b><br>Enerji İçeceği"
+    );
+
+    L.marker(burnCenter, {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🔥',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+      })
+    }).addTo(map).bindPopup("<b>Burn</b><br>Enerji İçeceği");
   </script>
 </body>
 </html>
