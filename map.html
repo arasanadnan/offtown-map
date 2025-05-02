@@ -440,6 +440,48 @@
       })
     }).addTo(map).bindPopup("<b>Burn</b><br>Enerji İçeceği");
 
+    // 📍 Önemli Noktalar
+
+    // FMAN
+    L.marker([40.89198337310839, 29.378733241641072], {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🏫',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
+      })
+    }).addTo(map).bindTooltip("<b>FMAN</b>", { permanent: true, direction: "top", className: "stand-label" });
+
+    // FENS
+    L.marker([40.8906157703027, 29.3792334076702], {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🏢',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
+      })
+    }).addTo(map).bindTooltip("<b>FENS</b>", { permanent: true, direction: "top", className: "stand-label" });
+
+    // FASS
+    L.marker([40.890487053288865, 29.378126657307263], {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🏢',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
+      })
+    }).addTo(map).bindTooltip("<b>FASS</b>", { permanent: true, direction: "top", className: "stand-label" });
+
+    // SL
+    L.marker([40.8917420334908, 29.377647774939334], {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🏢',
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
+      })
+    }).addTo(map).bindTooltip("<b>SL</b>", { permanent: true, direction: "top", className: "stand-label" });
+
     const infoPanel = document.getElementById("infoPanel");
     const infoTitle = document.getElementById("infoTitle");
     const infoContent = document.getElementById("infoContent");
