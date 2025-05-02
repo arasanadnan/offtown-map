@@ -228,7 +228,7 @@
       .bindPopup("<b>Tavuk Standı</b><br>Çıtır Tavuk");
     L.marker(hobCenter, { icon: L.divIcon({ className: 'custom-label', html: '🎲', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
-      .bindPopup("<b>HOB</b><br>Oyun Atölyesi");
+      .bindPopup("<b>HOB</b><br>ISTANBULUN EN IYI BURGERI");
     L.marker(kofteciRamizCenter, { icon: L.divIcon({ className: 'custom-label', html: '🥩', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Köfteci Ramiz</b><br>Izgara Köfte");
@@ -259,6 +259,25 @@
         iconAnchor: [10, 10]
       })
     }).addTo(map).bindPopup("<b>Burn</b><br>Enerji İçeceği");
+
+    // 🎩 Paul Kenzie – 10×6m – 75°
+    const paulKenzieCenter = [40.891074, 29.378873];
+    addRotatedBox(
+      paulKenzieCenter,
+      10, 10,
+      75, // Paul Kenzie açısı
+      "#6c3483",
+      "<b>Paul Kenzie</b><br>Moda & Aksesuar"
+    );
+
+    L.marker(paulKenzieCenter, {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🎩',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
+      })
+    }).addTo(map).bindPopup("<b>Paul Kenzie</b><br>Moda & Aksesuar");
   </script>
 </body>
 </html>
