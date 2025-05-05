@@ -427,7 +427,7 @@
     );
 
     // 🖥️ Asus – 10×6m – 75°
-    const asusCenter = [40.890962, 29.378449];
+    const asusCenter = [40.890926, 29.378389];
     addRotatedBox(
       asusCenter,
       10, 10,
@@ -446,50 +446,47 @@
       "<b>Paul Kenzie</b><br>Moda & Aksesuar"
     );
 
-    L.marker(renaultCenter, { icon: renaultLogo })
+    // Markers for stands (logos) as variables
+    const renaultMarker = L.marker(renaultCenter, { icon: renaultLogo })
       .addTo(map)
       .bindPopup("<b>Renault</b>");
-
-    L.marker(asusCenter, { icon: asusLogo })
+    const asusMarker = L.marker(asusCenter, { icon: asusLogo })
       .addTo(map)
       .bindPopup("<b>Asus</b>");
-
-    L.marker(paulKenzieCenter, { icon: paulKenzieLogo })
+    const paulKenzieMarker = L.marker(paulKenzieCenter, { icon: paulKenzieLogo })
       .addTo(map)
       .bindPopup("<b>Paul Kenzie</b><br>Moda & Aksesuar");
-
-    L.marker(kofteciRamizCenter, { icon: ramizLogo })
+    const kofteciRamizMarker = L.marker(kofteciRamizCenter, { icon: ramizLogo })
       .addTo(map)
       .bindPopup("<b>Köfteci Ramiz</b><br>Izgara Köfte");
-
-    L.marker(anaSahneCenter, { icon: anaSahneLogo })
+    const anaSahneMarker = L.marker(anaSahneCenter, { icon: anaSahneLogo })
       .addTo(map)
       .bindPopup("<b>Ana Sahne</b><br>DJ ve Performans Alanı");
-    L.marker(isBankasiCenter, { icon: maximumGencLogo })
+    const isBankasiMarker = L.marker(isBankasiCenter, { icon: maximumGencLogo })
       .addTo(map)
       .bindPopup("<b>İş Bankası</b>");
-    L.marker(pastaLaVistaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🌭', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const pastaLaVistaMarker = L.marker(pastaLaVistaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🌭', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>New Franks</b><br>Hot Dog ve Fast Food");
-    L.marker(radyoTownCenter, { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [30, 30], iconAnchor: [15, 15] }) })
+    const radyoTownMarker = L.marker(radyoTownCenter, { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [30, 30], iconAnchor: [15, 15] }) })
       .addTo(map)
       .bindPopup("<b>RadyoTown</b><br>Canlı Yayın & DJ");
-    L.marker(tavukStandiCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍗', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const tavukStandiMarker = L.marker(tavukStandiCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍗', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Tavuk Standı</b><br>Çıtır Tavuk");
-    L.marker(hobCenter, { icon: hobLogo })
+    const hobMarker = L.marker(hobCenter, { icon: hobLogo })
       .addTo(map)
       .bindPopup("<b>HOB</b><br>Oyun Atölyesi");
-    L.marker(pasaportPizzaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍕', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const pasaportPizzaMarker = L.marker(pasaportPizzaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍕', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Pasaport Pizza</b><br>Hızlı Pizza Servisi");
-    L.marker(potatoLabCenter, { icon: L.divIcon({ className: 'custom-label', html: '🥔', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const potatoLabMarker = L.marker(potatoLabCenter, { icon: L.divIcon({ className: 'custom-label', html: '🥔', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>PotatoLab</b><br>Patateeees!");
-    L.marker(maximumGamingCenter, { icon: maximumGencLogo })
+    const maximumGamingMarker = L.marker(maximumGamingCenter, { icon: maximumGencLogo })
       .addTo(map)
       .bindPopup("<b>Maximum Gaming</b><br>Espor & Oyun Alanı");
-    L.marker(yvesRocherCenter, { icon: L.divIcon({ className: 'custom-label', html: '🌿', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const yvesRocherMarker = L.marker(yvesRocherCenter, { icon: L.divIcon({ className: 'custom-label', html: '🌿', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Yves Rocher</b><br>Doğal Kozmetik");
     // 🔥 Burn – 10×6m – 75°
@@ -501,8 +498,7 @@
       "#000000",
       "<b>Burn</b><br>Enerji İçeceği"
     );
-
-    L.marker(burnCenter, {
+    const burnMarker = L.marker(burnCenter, {
       icon: L.divIcon({
         className: 'custom-label',
         html: '🔥',
@@ -512,16 +508,15 @@
     }).addTo(map).bindPopup("<b>Burn</b><br>Enerji İçeceği");
 
     // 📍 Carte – 10×6m – 60°
-    const carteCenter = [40.891090, 29.378569];
+    const carteCenter = [40.891162, 29.378569];
     addRotatedBox(
       carteCenter,
-      10, 6,
-      60, // Carte açısı
+      8, 8,
+      75, // Carte açısı
       "#3498db",
       "<b>Carte</b><br>Lezzetli Kahveler"
     );
-
-    L.marker(carteCenter, { icon: L.divIcon({ className: 'custom-label', html: '☕️', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const carteMarker = L.marker(carteCenter, { icon: L.divIcon({ className: 'custom-label', html: '☕️', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Carte</b><br>Lezzetli Kahveler");
 
@@ -534,10 +529,32 @@
       "#7f8c8d",
       "<b>QO</b><br>Ürün Tanıtım Alanı"
     );
-
-    L.marker(qoCenter, { icon: L.divIcon({ className: 'custom-label', html: '🔧', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const qoMarker = L.marker(qoCenter, { icon: L.divIcon({ className: 'custom-label', html: '🔧', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>QO</b><br>Ürün Tanıtım Alanı");
+    // Utility: Sync marker with box center
+    function syncMarkerWithBox(marker, boxCenter) {
+      marker.setLatLng(boxCenter);
+    }
+
+    // Sync all stand markers with their respective box centers
+    syncMarkerWithBox(renaultMarker, renaultCenter);
+    syncMarkerWithBox(asusMarker, asusCenter);
+    syncMarkerWithBox(paulKenzieMarker, paulKenzieCenter);
+    syncMarkerWithBox(kofteciRamizMarker, kofteciRamizCenter);
+    syncMarkerWithBox(anaSahneMarker, anaSahneCenter);
+    syncMarkerWithBox(isBankasiMarker, isBankasiCenter);
+    syncMarkerWithBox(pastaLaVistaMarker, pastaLaVistaCenter);
+    syncMarkerWithBox(radyoTownMarker, radyoTownCenter);
+    syncMarkerWithBox(tavukStandiMarker, tavukStandiCenter);
+    syncMarkerWithBox(hobMarker, hobCenter);
+    syncMarkerWithBox(pasaportPizzaMarker, pasaportPizzaCenter);
+    syncMarkerWithBox(potatoLabMarker, potatoLabCenter);
+    syncMarkerWithBox(maximumGamingMarker, maximumGamingCenter);
+    syncMarkerWithBox(yvesRocherMarker, yvesRocherCenter);
+    syncMarkerWithBox(burnMarker, burnCenter);
+    syncMarkerWithBox(carteMarker, carteCenter);
+    syncMarkerWithBox(qoMarker, qoCenter);
 
     // 📍 Önemli Noktalar
 
@@ -726,6 +743,43 @@
       const newLng = current.lng + dLng;
 
       selectedMarker.setLatLng([newLat, newLng]);
+
+      // --- Auto-shift linked logo marker if exists (for polygons with logos) ---
+      // If the selected marker is a polygon (box), try to move its linked logo marker.
+      if (selectedMarker instanceof L.Polygon && selectedMarker.getLatLngs) {
+        // Only works for rectangles (boxes)
+        const latlngs = selectedMarker.getLatLngs()[0];
+        if (latlngs && latlngs.length === 4) {
+          // Old center before shift
+          const oldCenterLat = (latlngs[0].lat + latlngs[2].lat) / 2;
+          const oldCenterLng = (latlngs[0].lng + latlngs[2].lng) / 2;
+          // New center after shift
+          const newLatLngs = latlngs.map(pt => ({
+            lat: pt.lat + dLat,
+            lng: pt.lng + dLng
+          }));
+          const centerLat = (newLatLngs[0].lat + newLatLngs[2].lat) / 2;
+          const centerLng = (newLatLngs[0].lng + newLatLngs[2].lng) / 2;
+          selectedMarker.setLatLngs([newLatLngs]);
+          // Auto-shift marker if linked
+          map.eachLayer(layer => {
+            if (layer instanceof L.Marker) {
+              const markerLatLng = layer.getLatLng();
+              if (
+                Math.abs(markerLatLng.lat - oldCenterLat) < 0.0001 &&
+                Math.abs(markerLatLng.lng - oldCenterLng) < 0.0001
+              ) {
+                layer.setLatLng([centerLat, centerLng]);
+              }
+            }
+          });
+          map.panTo([centerLat, centerLng]);
+          document.getElementById("currentCoords").innerText =
+            `Seçili Kutu Koordinat: [${centerLat.toFixed(6)}, ${centerLng.toFixed(6)}]`;
+          return;
+        }
+      }
+
       map.panTo([newLat, newLng]);
       document.getElementById("currentCoords").innerText = `Seçili Kutu Koordinat: [${newLat.toFixed(6)}, ${newLng.toFixed(6)}]`;
     }
