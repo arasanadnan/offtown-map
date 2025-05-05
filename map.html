@@ -81,7 +81,7 @@
       border-radius: 15px;
       padding: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      z-index: 9999;
+      z-index: 10001;
       border: 1px solid rgba(255, 255, 255, 0.2);
       transition: opacity 0.3s ease, transform 0.3s ease;
       color: white;
@@ -162,7 +162,7 @@
     <div style="display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; width: 100%; justify-content: center;">
       <button data-category="sahne" data-lat="40.891249" data-lng="29.377444"><img src="offtown_logo.png" width="20" height="20"> Ana Sahne</button>
       <button data-category="sponsor" data-lat="40.891457" data-lng="29.379045"><img src="maximum_genc.png" width="20" height="20"> İş Bankası</button>
-      <button data-category="yemek" data-lat="40.891032" data-lng="29.378616">🍝 Pasta La Vista</button>
+      <button data-category="yemek" data-lat="40.891032" data-lng="29.378616">🌭 New Franks</button>
       <button data-category="sahne" data-lat="40.891025" data-lng="29.379149">📻 RadyoTown</button>
       <button data-category="yemek" data-lat="40.890900" data-lng="29.378660">🍗 Tavuk Standı</button>
       <button data-category="yemek" data-lat="40.891516" data-lng="29.37845"><img src="hob.png" width="20" height="20"> HOB</button>
@@ -196,7 +196,7 @@
   </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <!-- Etkinlik Kuralları Modal (renkli ve daha şık) -->
-  <div id="rulesModal" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);display:flex;justify-content:center;align-items:center;z-index:99999;">
+  <div id="rulesModal" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.8);display:none;justify-content:center;align-items:center;z-index:99999;">
     <div style="background:linear-gradient(135deg, #ffffff, #f9f9f9);padding:40px 30px;border-radius:20px;max-width:500px;text-align:center;position:relative;box-shadow:0 10px 30px rgba(0,0,0,0.2);">
       <img src="offtown_logo.png" alt="Offtown Logo" style="width:80px;margin-bottom:20px;">
       <h2 style="font-size:24px;color:#222;margin-bottom:20px;">Etkinlik Kuralları</h2>
@@ -332,9 +332,9 @@
     addRotatedBox(
       pastaLaVistaCenter,
       10, 6,
-      75, // Pasta La Vista açısı
+      75, // New Franks açısı
       "#e67e22",
-      "<b>Pasta La Vista</b><br>İtalyan Mutfağı"
+      "<b>New Franks</b><br>Hot Dog ve Fast Food"
     );
 
     // 📻 RadyoTown – 10×10m – -20°
@@ -388,7 +388,7 @@
     );
 
     // 🥔 PotatoLab – 10×6m – 40°
-    const potatoLabCenter = [40.891224, 29.379289];
+    const potatoLabCenter = [40.891234, 29.378540];
     addRotatedBox(
       potatoLabCenter,
       10, 6,
@@ -458,9 +458,9 @@
     L.marker(isBankasiCenter, { icon: maximumGencLogo })
       .addTo(map)
       .bindPopup("<b>İş Bankası</b>");
-    L.marker(pastaLaVistaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍝', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    L.marker(pastaLaVistaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🌭', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
-      .bindPopup("<b>Pasta La Vista</b><br>İtalyan Mutfağı");
+      .bindPopup("<b>New Franks</b><br>Hot Dog ve Fast Food");
     L.marker(radyoTownCenter, { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [30, 30], iconAnchor: [15, 15] }) })
       .addTo(map)
       .bindPopup("<b>RadyoTown</b><br>Canlı Yayın & DJ");
@@ -497,6 +497,34 @@
         iconAnchor: [10, 10]
       })
     }).addTo(map).bindPopup("<b>Burn</b><br>Enerji İçeceği");
+
+    // 📍 Carte – 10×6m – 60°
+    const carteCenter = [40.891090, 29.378569];
+    addRotatedBox(
+      carteCenter,
+      10, 6,
+      60, // Carte açısı
+      "#3498db",
+      "<b>Carte</b><br>Lezzetli Kahveler"
+    );
+
+    L.marker(carteCenter, { icon: L.divIcon({ className: 'custom-label', html: '☕️', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Carte</b><br>Lezzetli Kahveler");
+
+    // 📍 QO – 10×6m – 60°
+    const qoCenter = [40.891091, 29.378964];
+    addRotatedBox(
+      qoCenter,
+      10, 6,
+      60, // QO açısı
+      "#7f8c8d",
+      "<b>QO</b><br>Ürün Tanıtım Alanı"
+    );
+
+    L.marker(qoCenter, { icon: L.divIcon({ className: 'custom-label', html: '🔧', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>QO</b><br>Ürün Tanıtım Alanı");
 
     // 📍 Önemli Noktalar
 
@@ -549,12 +577,27 @@
       infoPanel.style.display = "none";
     });
 
+    // Otomatik olarak info paneli dışına tıklayınca kapat
+    document.addEventListener('click', function(event) {
+      const infoPanel = document.getElementById("infoPanel");
+      const standMenu = document.getElementById("standMenu");
+      // Check if click was outside infoPanel and standMenu
+      if (infoPanel.style.display !== "none" &&
+          !infoPanel.contains(event.target) &&
+          !standMenu.contains(event.target)) {
+        infoPanel.style.display = "none";
+      }
+    });
+
     document.querySelectorAll('#standMenu button').forEach(button => {
       button.addEventListener('click', () => {
         const lat = parseFloat(button.getAttribute('data-lat'));
         const lng = parseFloat(button.getAttribute('data-lng'));
 
-        map.flyTo([lat, lng], 19, { animate: true, duration: 1.5 });
+        // Smarter flyTo: prevent zooming too far (grey map bug)
+        const maxZoom = map.getMaxZoom() || 19;
+        const targetZoom = Math.min(maxZoom - 1, 18);
+        map.flyTo([lat, lng], targetZoom, { animate: true, duration: 1.5 });
 
         map.eachLayer(layer => {
           if (layer.getLatLng && layer.getLatLng().lat === lat && layer.getLatLng().lng === lng) {
@@ -596,8 +639,14 @@
     const rulesModal = document.getElementById("rulesModal");
     const closeRules = document.getElementById("closeRules");
 
+    // Show rules modal only once per user using localStorage
+    if (!localStorage.getItem("offtownRulesAccepted")) {
+      rulesModal.style.display = "flex";
+    }
+
     closeRules.addEventListener("click", () => {
       rulesModal.style.display = "none";
+      localStorage.setItem("offtownRulesAccepted", "yes");
     });
 
     // Drawer toggle logic
@@ -622,7 +671,7 @@
   </script>
 </body>
   <!-- Günün Programı Paneli -->
-  <div id="schedulePanel" style="position:fixed;top:20px;right:20px;width:250px;background:rgba(0,0,0,0.75);backdrop-filter:blur(10px);border-radius:12px;padding:15px;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:9999;font-family:'Inter',sans-serif;color:white;">
+  <div id="schedulePanel" style="position:fixed;top:20px;right:20px;width:250px;background:rgba(0,0,0,0.75);backdrop-filter:blur(10px);border-radius:12px;padding:15px;box-shadow:0 4px 12px rgba(0,0,0,0.25);z-index:9999;font-family:'Inter',sans-serif;color:white;text-align:left;">
     <h3 style="margin-top:0;font-size:16px;margin-bottom:12px;">🎉 Günün Programı</h3>
     <ul style="list-style:none;padding:0;margin:0;font-size:13px;line-height:1.6;">
       <li data-time="12:00"><strong>12:00</strong> - Kapı Açılışı</li>
