@@ -397,13 +397,23 @@
       "<b>PotatoLab</b><br>Patateeees!"
     );
     // 🕹️ Maximum Gaming – 10×10m – 45°
-    const maximumGamingCenter = [40.890899, 29.377969];
+    const maximumGamingCenter = [40.890899, 29.378069];
     addRotatedBox(
       maximumGamingCenter,
       20, 10,
       -20, // Maximum Gaming açısı
       "#8e44ad",
       "<b>Maximum Gaming</b><br>Espor & Oyun Alanı"
+    );
+
+    // 🌿 Yves Rocher – 6×6m – 75°
+    const yvesRocherCenter = [40.890899, 29.37789];
+    addRotatedBox(
+      yvesRocherCenter,
+      8, 8,
+      75, // Yves Rocher açısı
+      "#2ecc71",
+      "<b>Yves Rocher</b><br>Doğal Kozmetik"
     );
 
     // 🚗 Renault – 10×6m – 75°
@@ -479,6 +489,9 @@
     L.marker(maximumGamingCenter, { icon: maximumGencLogo })
       .addTo(map)
       .bindPopup("<b>Maximum Gaming</b><br>Espor & Oyun Alanı");
+    L.marker(yvesRocherCenter, { icon: L.divIcon({ className: 'custom-label', html: '🌿', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Yves Rocher</b><br>Doğal Kozmetik");
     // 🔥 Burn – 10×6m – 75°
     const burnCenter = [40.891272, 29.378755];
     addRotatedBox(
@@ -639,14 +652,16 @@
     const rulesModal = document.getElementById("rulesModal");
     const closeRules = document.getElementById("closeRules");
 
-    // Show rules modal only once per user using localStorage
-    if (!localStorage.getItem("offtownRulesAccepted")) {
+    // Toggle for rules popup visibility on page load
+    const showRulesPopup = false; // Bunu sadece true/false yaparak aç/kapat kontrolü sağlayabilirsiniz
+
+    // Show rules modal on page load if enabled
+    if (showRulesPopup) {
       rulesModal.style.display = "flex";
     }
 
     closeRules.addEventListener("click", () => {
       rulesModal.style.display = "none";
-      localStorage.setItem("offtownRulesAccepted", "yes");
     });
 
     // Drawer toggle logic
@@ -668,6 +683,52 @@
         }, 10);
       }
     });
+</script>
+
+  <!-- Developer Shift Panel -->
+  <div id="shiftPanel" style="position:fixed;bottom:20px;left:20px;background:rgba(0,0,0,0.75);color:white;padding:12px 16px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.4);z-index:99999;font-family:'Inter',sans-serif;">
+    <h4 style="margin:0 0 8px 0;font-size:14px;">📍 Kutu Kaydır</h4>
+    <div style="display:flex;gap:6px;">
+      <button onclick="shiftSelected(0.000009,0)" style="padding:6px;">⬆️</button>
+      <button onclick="shiftSelected(0,-0.000012)" style="padding:6px;">⬅️</button>
+      <button onclick="shiftSelected(0,0.000012)" style="padding:6px;">➡️</button>
+      <button onclick="shiftSelected(-0.000009,0)" style="padding:6px;">⬇️</button>
+    </div>
+    <p style="margin-top:10px;font-size:12px;">Kutuyu seçmek için haritada popup açın.</p>
+  </div>
+  <div id="currentCoords" style="position:fixed;bottom:100px;left:20px;background:rgba(0,0,0,0.85);color:white;padding:8px 12px;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.3);z-index:99999;font-family:'Inter',sans-serif;font-size:13px;">
+    <strong>Seçili Kutu:</strong> Henüz seçilmedi.
+  </div>
+
+  <script>
+    // Developer Panel: Live Shift Coordinates
+    let selectedMarker = null;
+
+    // Marker click -> select it
+    map.eachLayer(layer => {
+      if (layer instanceof L.Marker) {
+        layer.on("click", () => {
+          selectedMarker = layer;
+          const selectedCoords = layer.getLatLng();
+          document.getElementById("currentCoords").innerText = `Seçili Kutu Koordinat: [${selectedCoords.lat.toFixed(6)}, ${selectedCoords.lng.toFixed(6)}]`;
+        });
+      }
+    });
+
+    function shiftSelected(dLat, dLng) {
+      if (!selectedMarker) {
+        alert("Önce haritadan bir kutu seçin.");
+        return;
+      }
+
+      const current = selectedMarker.getLatLng();
+      const newLat = current.lat + dLat;
+      const newLng = current.lng + dLng;
+
+      selectedMarker.setLatLng([newLat, newLng]);
+      map.panTo([newLat, newLng]);
+      document.getElementById("currentCoords").innerText = `Seçili Kutu Koordinat: [${newLat.toFixed(6)}, ${newLng.toFixed(6)}]`;
+    }
   </script>
 </body>
   <!-- Günün Programı Paneli -->
