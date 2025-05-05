@@ -224,6 +224,19 @@
   <script>
     const map = L.map('map').setView([40.89125, 29.37736], 18);
 
+    // Enable two-finger rotation gesture support on mobile devices
+    map.touchZoom.enable();
+    map.dragging.enable();
+    map.doubleClickZoom.enable();
+    map.scrollWheelZoom.enable();
+    map.boxZoom.enable();
+    map.keyboard.enable();
+    map.tap = true;
+    map.gestureHandling = true;
+    // Enable rotation gestures via CSS transform (native leaflet does not support map rotation itself)
+    // Allow two finger rotation on mobile (just like Google Maps style)
+    map.getContainer().style.touchAction = "pan-x pan-y pinch-zoom rotate";
+
     // Esri Uydu Haritası
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     }).addTo(map);
