@@ -120,7 +120,6 @@
       stroke-width: 2;
       stroke: rgba(0, 0, 0, 0.25);
       fill-opacity: 0.6;
-      fill: rgba(64, 224, 208, 0.6); /* Light turquoise color for better and fresh look */
       backdrop-filter: blur(6px);
     }
     .stand-polygon:hover {
@@ -185,6 +184,7 @@
       <button data-category="sponsor" data-lat="40.890962" data-lng="29.378449"><img src="asus.png" width="20" height="20"> Asus</button>
       <button data-category="sponsor" data-lat="40.891272" data-lng="29.378755">🔥 Burn</button>
       <button data-category="sponsor" data-lat="40.891074" data-lng="29.378873"><img src="paul.png" width="20" height="20"> Paul Kenzie</button>
+      <button data-category="oyun" data-lat="40.891113" data-lng="29.379042"><img src="rasquad.png" width="20" height="20"> Rasquad</button>
     </div>
   </div>
   <!-- Kategoriler Açılır Menü (Drawer Style) -->
@@ -339,7 +339,7 @@
       anaSahneCenter,
       35, 20,
       75, // Ana Sahne açısı
-      "#555555",
+      "#333333",
       "<b>Ana Sahne</b><br>DJ ve Performans Alanı"
     );
 
@@ -349,29 +349,29 @@
       isBankasiCenter,
       15, 20,
       75, // İş Bankası açısı
-      "#1d3f72",
+      "#0b3c5d",
       "<b>İş Bankası</b>"
     );
 
 
     // 📻 RadyoTown – 10×10m – -20°
-    const radyoTownCenter = [40.891025, 29.379149];
+    const radyoTownCenter = [40.890944, 29.378861];
     addRotatedBox(
       radyoTownCenter,
-      20, 10,
-      -20, // RadyoTown açısı
-      "#9b59b6",
+      12, 8,
+      45, // RadyoTown açısı
+      "#6a0dad",
       "<b>RadyoTown</b><br>Canlı Yayın & DJ"
     );
 
     // 🍗 Tavuk Standı – 10×10m – 60°
-    const tavukStandiCenter = [40.890900, 29.378660];
+    const tavukStandiCenter = [40.891026, 29.378588];
     addRotatedBox(
       tavukStandiCenter,
       10, 6,
       75, // Tavuk Standı açısı
-      "#2ecc71",
-      "<b>Tavuk Standı</b><br>Çıtır Tavuk"
+      "#f39c12",
+      "<b>This Chicken</b><br>Çıtır Tavuk"
     );
 
     // 🎲 HOB – 10×10m – 10°
@@ -390,7 +390,7 @@
       kofteciRamizCenter,
       10, 6,
       75, // Köfteci Ramiz açısı
-      "#d35400",
+      "#8b4513",
       "<b>Köfteci Ramiz</b><br>Izgara Köfte"
     );
 
@@ -400,7 +400,7 @@
       pasaportPizzaCenter,
       10, 6,
       75, // Pasaport Pizza açısı
-      "#f39c12",
+      "#c0392b",
       "<b>Pasaport Pizza</b><br>Hızlı Pizza Servisi"
     );
 
@@ -410,7 +410,7 @@
       potatoLabCenter,
       10, 6,
       75, // PotatoLab açısı
-      "#bdc3c7",
+      "#dcdcdc",
       "<b>PotatoLab</b><br>Patateeees!"
     );
     // 🕹️ Maximum Gaming – 10×10m – 45°
@@ -429,7 +429,7 @@
       yvesRocherCenter,
       8, 8,
       75, // Yves Rocher açısı
-      "#2ecc71",
+      "#27ae60",
       "<b>Yves Rocher</b><br>Doğal Kozmetik"
     );
 
@@ -439,7 +439,7 @@
       renaultCenter,
       10, 20,
       75, // Renault açısı
-      "#ffd700",
+      "#f1c40f",
       "<b>Renault</b>"
     );
 
@@ -450,7 +450,7 @@
       paulKenzieCenter,
       10, 10,
       75, // Paul Kenzie açısı
-      "#ff69b4",
+      "#e91e63",
       "<b>Paul Kenzie</b><br>Moda & Aksesuar"
     );
 
@@ -500,7 +500,13 @@
     const maximumGamingMarker = L.marker(maximumGamingCenter, { icon: maximumGencLogo })
       .addTo(map)
       .bindPopup("<b>Maximum Gaming</b><br>Espor & Oyun Alanı");
-    const yvesRocherMarker = L.marker(yvesRocherCenter, { icon: L.divIcon({ className: 'custom-label', html: '🌿', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const yvesRocherLogo = L.icon({
+      iconUrl: 'yves_rocher.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const yvesRocherMarker = L.marker(yvesRocherCenter, { icon: yvesRocherLogo })
       .addTo(map)
       .bindPopup("<b>Yves Rocher</b><br>Doğal Kozmetik");
     // 🔥 Burn – 10×6m – 75°
@@ -572,9 +578,35 @@
       className: 'stand-polygon'
     }).addTo(map).bindPopup("<b>Nescafe</b><br>Sıcak Kahveler");
 
-    const nescafeMarker = L.marker([40.891351, 29.378846], { icon: L.divIcon({ className: 'custom-label', html: '☕️', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const nescafeLogo = L.icon({
+      iconUrl: 'nescafe.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const nescafeMarker = L.marker([40.891351, 29.378846], { icon: nescafeLogo })
       .addTo(map)
       .bindPopup("<b>Nescafe</b><br>Sıcak Kahveler");
+
+    // 🛡️ Rasquad – 10×6m – 75°
+    const rasquadCenter = [40.891113, 29.379042];
+    addRotatedBox(
+      rasquadCenter,
+      10, 6,
+      75, // Rasquad açısı
+      "#8e24aa", // Daha parlak mor tonu
+      "<b>Rasquad</b><br>Gaming & Etkinlik Alanı"
+    );
+
+    const rasquadLogo = L.icon({
+      iconUrl: 'rasquad.png',
+      iconSize: [48, 48],
+      iconAnchor: [24, 24]
+    });
+
+    const rasquadMarker = L.marker(rasquadCenter, { icon: rasquadLogo })
+      .addTo(map)
+      .bindPopup("<b>Rasquad</b><br>Gaming & Etkinlik Alanı");
     // Utility: Sync marker with box center
     function syncMarkerWithBox(marker, boxCenter) {
       marker.setLatLng(boxCenter);
@@ -596,6 +628,7 @@
     syncMarkerWithBox(burnMarker, burnCenter);
     syncMarkerWithBox(carteMarker, carteCenter);
     syncMarkerWithBox(qoMarker, qoCenter);
+    syncMarkerWithBox(rasquadMarker, rasquadCenter);
 
     // 📍 Önemli Noktalar
 
