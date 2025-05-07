@@ -174,13 +174,12 @@
     <div style="display: flex; gap: 14px; overflow-x: auto; padding-bottom: 8px; width: 100%; justify-content: center;">
       <button data-category="sahne" data-lat="40.891249" data-lng="29.377444"><img src="offtown_logo.png" width="20" height="20"> Ana Sahne</button>
       <button data-category="sponsor" data-lat="40.891457" data-lng="29.379045"><img src="maximum_genc.png" width="20" height="20"> İş Bankası</button>
-      <button data-category="yemek" data-lat="40.891032" data-lng="29.378616">🌭 New Franks</button>
       <button data-category="sahne" data-lat="40.891025" data-lng="29.379149">📻 RadyoTown</button>
-      <button data-category="yemek" data-lat="40.890900" data-lng="29.378660">🍗 Tavuk Standı</button>
+      <button data-category="yemek" data-lat="40.890900" data-lng="29.378660"><img src="this_chicken.png" width="20" height="20"> This Chicken</button>
       <button data-category="yemek" data-lat="40.891516" data-lng="29.37845"><img src="hob.png" width="20" height="20"> HOB</button>
       <button data-category="yemek" data-lat="40.891392" data-lng="29.37846"><img src="ramiz.png" width="20" height="20"> Köfteci Ramiz</button>
       <button data-category="yemek" data-lat="40.8908" data-lng="29.3787">🍕 Pasaport Pizza</button>
-      <button data-category="yemek" data-lat="40.891224" data-lng="29.379289">🥔 PotatoLab</button>
+      <button data-category="yemek" data-lat="40.891224" data-lng="29.379289"><img src="potato_lab.png" width="20" height="20"> PotatoLab</button>
       <button data-category="oyun" data-lat="40.890899" data-lng="29.377969"><img src="maximum_genc.png" width="20" height="20"> Maximum Gaming</button>
       <button data-category="sponsor" data-lat="40.890836" data-lng="29.377708"><img src="renault.png" width="20" height="20"> Renault</button>
       <button data-category="sponsor" data-lat="40.890962" data-lng="29.378449"><img src="asus.png" width="20" height="20"> Asus</button>
@@ -292,6 +291,8 @@
       iconAnchor: [20, 20]
     });
 
+    // This Chicken custom logo
+
     const renaultLogo = L.icon({
       iconUrl: 'renault.png',
       iconSize: [40, 40],
@@ -352,15 +353,6 @@
       "<b>İş Bankası</b>"
     );
 
-    // 🍝 Pasta La Vista – 10×10m – 45°
-    const pastaLaVistaCenter = [40.891032, 29.378616];
-    addRotatedBox(
-      pastaLaVistaCenter,
-      10, 6,
-      75, // New Franks açısı
-      "#e67e22",
-      "<b>New Franks</b><br>Hot Dog ve Fast Food"
-    );
 
     // 📻 RadyoTown – 10×10m – -20°
     const radyoTownCenter = [40.891025, 29.379149];
@@ -413,11 +405,11 @@
     );
 
     // 🥔 PotatoLab – 10×6m – 40°
-    const potatoLabCenter = [40.891234, 29.378540];
+    const potatoLabCenter = [40.891351, 29.378456];
     addRotatedBox(
       potatoLabCenter,
       10, 6,
-      -20, // PotatoLab açısı
+      75, // PotatoLab açısı
       "#bdc3c7",
       "<b>PotatoLab</b><br>Patateeees!"
     );
@@ -478,22 +470,31 @@
     const isBankasiMarker = L.marker(isBankasiCenter, { icon: maximumGencLogo })
       .addTo(map)
       .bindPopup("<b>İş Bankası</b>");
-    const pastaLaVistaMarker = L.marker(pastaLaVistaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🌭', iconSize: [20, 20], iconAnchor: [10, 10] }) })
-      .addTo(map)
-      .bindPopup("<b>New Franks</b><br>Hot Dog ve Fast Food");
     const radyoTownMarker = L.marker(radyoTownCenter, { icon: L.divIcon({ className: 'custom-label', html: '📻', iconSize: [30, 30], iconAnchor: [15, 15] }) })
       .addTo(map)
       .bindPopup("<b>RadyoTown</b><br>Canlı Yayın & DJ");
-    const tavukStandiMarker = L.marker(tavukStandiCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍗', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const thisChickenLogo = L.icon({
+      iconUrl: 'this_chicken.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const tavukStandiMarker = L.marker(tavukStandiCenter, { icon: thisChickenLogo })
       .addTo(map)
-      .bindPopup("<b>Tavuk Standı</b><br>Çıtır Tavuk");
+      .bindPopup("<b>This Chicken</b><br>Lezzetli Tavuklar");
     const hobMarker = L.marker(hobCenter, { icon: hobLogo })
       .addTo(map)
       .bindPopup("<b>HOB</b><br>Oyun Atölyesi");
     const pasaportPizzaMarker = L.marker(pasaportPizzaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍕', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Pasaport Pizza</b><br>Hızlı Pizza Servisi");
-    const potatoLabMarker = L.marker(potatoLabCenter, { icon: L.divIcon({ className: 'custom-label', html: '🥔', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const potatoLabLogo = L.icon({
+      iconUrl: 'potato_lab.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const potatoLabMarker = L.marker(potatoLabCenter, { icon: potatoLabLogo })
       .addTo(map)
       .bindPopup("<b>PotatoLab</b><br>Patateeees!");
     const maximumGamingMarker = L.marker(maximumGamingCenter, { icon: maximumGencLogo })
@@ -529,7 +530,12 @@
       "#3498db",
       "<b>Carte</b><br>Lezzetli Kahveler"
     );
-    const carteMarker = L.marker(carteCenter, { icon: L.divIcon({ className: 'custom-label', html: '☕️', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const carteLogo = L.icon({
+      iconUrl: 'carte.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+    const carteMarker = L.marker(carteCenter, { icon: carteLogo })
       .addTo(map)
       .bindPopup("<b>Carte</b><br>Lezzetli Kahveler");
 
@@ -580,7 +586,6 @@
     syncMarkerWithBox(kofteciRamizMarker, kofteciRamizCenter);
     syncMarkerWithBox(anaSahneMarker, anaSahneCenter);
     syncMarkerWithBox(isBankasiMarker, isBankasiCenter);
-    syncMarkerWithBox(pastaLaVistaMarker, pastaLaVistaCenter);
     syncMarkerWithBox(radyoTownMarker, radyoTownCenter);
     syncMarkerWithBox(tavukStandiMarker, tavukStandiCenter);
     syncMarkerWithBox(hobMarker, hobCenter);
