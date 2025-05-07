@@ -343,11 +343,11 @@
     );
 
     // 🏦 İş Bankası – 10×10m – 0°
-    const isBankasiCenter = [40.891457, 29.379045];
+    const isBankasiCenter = [40.891340, 29.379141];
     addRotatedBox(
       isBankasiCenter,
-      20, 15,
-      -20, // İş Bankası açısı
+      15, 20,
+      75, // İş Bankası açısı
       "#1d3f72",
       "<b>İş Bankası</b>"
     );
@@ -383,17 +383,17 @@
     );
 
     // 🎲 HOB – 10×10m – 10°
-    const hobCenter = [40.891516, 29.37845];
+    const hobCenter = [40.891552, 29.378390];
     addRotatedBox(
       hobCenter,
-      10, 10,
+      10, 6,
       75, // HOB açısı
       "#ffffff",
       "<b>HOB</b><br>ISTANBULUN EN IYI BURGERI"
     );
 
     // 🥩 Köfteci Ramiz – 12×8m – 25°
-    const kofteciRamizCenter = [40.891392, 29.37846];
+    const kofteciRamizCenter = [40.891446, 29.378436];
     addRotatedBox(
       kofteciRamizCenter,
       10, 6,
@@ -451,15 +451,6 @@
       "<b>Renault</b>"
     );
 
-    // 🖥️ Asus – 10×6m – 75°
-    const asusCenter = [40.890926, 29.378389];
-    addRotatedBox(
-      asusCenter,
-      10, 10,
-      75, // Asus açısı
-      "#ffffff",
-      "<b>Asus</b>"
-    );
 
     // 👕 Paul Kenzie – 10×6m – 75°
     const paulKenzieCenter = [40.891074, 29.378873];
@@ -475,9 +466,6 @@
     const renaultMarker = L.marker(renaultCenter, { icon: renaultLogo })
       .addTo(map)
       .bindPopup("<b>Renault</b>");
-    const asusMarker = L.marker(asusCenter, { icon: asusLogo })
-      .addTo(map)
-      .bindPopup("<b>Asus</b>");
     const paulKenzieMarker = L.marker(paulKenzieCenter, { icon: paulKenzieLogo })
       .addTo(map)
       .bindPopup("<b>Paul Kenzie</b><br>Moda & Aksesuar");
@@ -515,10 +503,10 @@
       .addTo(map)
       .bindPopup("<b>Yves Rocher</b><br>Doğal Kozmetik");
     // 🔥 Burn – 10×6m – 75°
-    const burnCenter = [40.891272, 29.378755];
+    const burnCenter = [40.891254, 29.378707];
     addRotatedBox(
       burnCenter,
-      10, 10,
+      8, 8,
       75, // Burn açısı
       "#000000",
       "<b>Burn</b><br>Enerji İçeceği"
@@ -557,6 +545,30 @@
     const qoMarker = L.marker(qoCenter, { icon: L.divIcon({ className: 'custom-label', html: '🔧', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>QO</b><br>Ürün Tanıtım Alanı");
+
+    // ☕️ Nescafe – Perfect Circle Polygon
+    const nescafeCenter = [40.891351, 29.378846];
+    const nescafeRadius = 0.00006; // Approx ~6-8m radius
+    const nescafeCircleCoords = [];
+    const numPoints = 60; // Smooth circle
+    for (let i = 0; i < numPoints; i++) {
+      const angle = (i / numPoints) * 2 * Math.PI;
+      const lat = nescafeCenter[0] + (nescafeRadius * Math.cos(angle));
+      const lng = nescafeCenter[1] + (nescafeRadius * Math.sin(angle));
+      nescafeCircleCoords.push([lat, lng]);
+    }
+    L.polygon(nescafeCircleCoords, {
+      color: "#333",
+      weight: 3,
+      fillColor: "#c49b6e", // Kahverengi ton (coffee like)
+      fillOpacity: 0.85,
+      opacity: 1,
+      className: 'stand-polygon'
+    }).addTo(map).bindPopup("<b>Nescafe</b><br>Sıcak Kahveler");
+
+    const nescafeMarker = L.marker([40.891351, 29.378846], { icon: L.divIcon({ className: 'custom-label', html: '☕️', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Nescafe</b><br>Sıcak Kahveler");
     // Utility: Sync marker with box center
     function syncMarkerWithBox(marker, boxCenter) {
       marker.setLatLng(boxCenter);
@@ -564,7 +576,6 @@
 
     // Sync all stand markers with their respective box centers
     syncMarkerWithBox(renaultMarker, renaultCenter);
-    syncMarkerWithBox(asusMarker, asusCenter);
     syncMarkerWithBox(paulKenzieMarker, paulKenzieCenter);
     syncMarkerWithBox(kofteciRamizMarker, kofteciRamizCenter);
     syncMarkerWithBox(anaSahneMarker, anaSahneCenter);
