@@ -334,7 +334,7 @@
     // 🔽 Açıları buradan değiştirebilirsin
 
     // 🎤 Ana Sahne – 25×25m – 30°
-    const anaSahneCenter = [40.891249, 29.377444];
+    const anaSahneCenter = [40.891249, 29.377414];
     addRotatedBox(
       anaSahneCenter,
       35, 20,
@@ -344,7 +344,7 @@
     );
 
     // 🏦 İş Bankası – 10×10m – 0°
-    const isBankasiCenter = [40.891340, 29.379141];
+    const isBankasiCenter = [40.891340, 29.379111];
     addRotatedBox(
       isBankasiCenter,
       15, 20,
@@ -355,7 +355,7 @@
 
 
     // 📻 RadyoTown – 10×10m – -20°
-    const radyoTownCenter = [40.890944, 29.378861];
+    const radyoTownCenter = [40.890944, 29.378831];
     addRotatedBox(
       radyoTownCenter,
       12, 8,
@@ -365,7 +365,7 @@
     );
 
     // 🍗 Tavuk Standı – 10×10m – 60°
-    const tavukStandiCenter = [40.891026, 29.378588];
+    const tavukStandiCenter = [40.891026, 29.378558];
     addRotatedBox(
       tavukStandiCenter,
       10, 6,
@@ -375,7 +375,7 @@
     );
 
     // 🎲 HOB – 10×10m – 10°
-    const hobCenter = [40.891552, 29.378390];
+    const hobCenter = [40.891552, 29.378360];
     addRotatedBox(
       hobCenter,
       10, 6,
@@ -385,7 +385,7 @@
     );
 
     // 🥩 Köfteci Ramiz – 12×8m – 25°
-    const kofteciRamizCenter = [40.891446, 29.378436];
+    const kofteciRamizCenter = [40.891446, 29.378406];
     addRotatedBox(
       kofteciRamizCenter,
       10, 6,
@@ -395,7 +395,7 @@
     );
 
     // 🍕 Pasaport Pizza – 10×6m – 60°
-    const pasaportPizzaCenter = [40.8908, 29.3787];
+    const pasaportPizzaCenter = [40.890944, 29.378586];
     addRotatedBox(
       pasaportPizzaCenter,
       10, 6,
@@ -405,7 +405,7 @@
     );
 
     // 🥔 PotatoLab – 10×6m – 40°
-    const potatoLabCenter = [40.891351, 29.378456];
+    const potatoLabCenter = [40.891351, 29.378426];
     addRotatedBox(
       potatoLabCenter,
       10, 6,
@@ -414,7 +414,7 @@
       "<b>PotatoLab</b><br>Patateeees!"
     );
     // 🕹️ Maximum Gaming – 10×10m – 45°
-    const maximumGamingCenter = [40.890899, 29.378069];
+    const maximumGamingCenter = [40.890899, 29.378039];
     addRotatedBox(
       maximumGamingCenter,
       20, 10,
@@ -424,7 +424,7 @@
     );
 
     // 🌿 Yves Rocher – 6×6m – 75°
-    const yvesRocherCenter = [40.890899, 29.37789];
+    const yvesRocherCenter = [40.890899, 29.37786];
     addRotatedBox(
       yvesRocherCenter,
       8, 8,
@@ -434,7 +434,7 @@
     );
 
     // 🚗 Renault – 10×6m – 75°
-    const renaultCenter = [40.890836, 29.377708];
+    const renaultCenter = [40.890836, 29.377678];
     addRotatedBox(
       renaultCenter,
       10, 20,
@@ -445,7 +445,7 @@
 
 
     // 👕 Paul Kenzie – 10×6m – 75°
-    const paulKenzieCenter = [40.891074, 29.378873];
+    const paulKenzieCenter = [40.891074, 29.378843];
     addRotatedBox(
       paulKenzieCenter,
       10, 10,
@@ -485,7 +485,13 @@
     const hobMarker = L.marker(hobCenter, { icon: hobLogo })
       .addTo(map)
       .bindPopup("<b>HOB</b><br>Oyun Atölyesi");
-    const pasaportPizzaMarker = L.marker(pasaportPizzaCenter, { icon: L.divIcon({ className: 'custom-label', html: '🍕', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const pasaportPizzaLogo = L.icon({
+      iconUrl: 'pasaport_pizza.png',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14]
+    });
+
+    const pasaportPizzaMarker = L.marker(pasaportPizzaCenter, { icon: pasaportPizzaLogo })
       .addTo(map)
       .bindPopup("<b>Pasaport Pizza</b><br>Hızlı Pizza Servisi");
     const potatoLabLogo = L.icon({
@@ -510,7 +516,7 @@
       .addTo(map)
       .bindPopup("<b>Yves Rocher</b><br>Doğal Kozmetik");
     // 🔥 Burn – 10×6m – 75°
-    const burnCenter = [40.891254, 29.378707];
+    const burnCenter = [40.891254, 29.378677];
     addRotatedBox(
       burnCenter,
       8, 8,
@@ -528,7 +534,7 @@
     }).addTo(map).bindPopup("<b>Burn</b><br>Enerji İçeceği");
 
     // 📍 Carte – 10×6m – 60°
-    const carteCenter = [40.891162, 29.378569];
+    const carteCenter = [40.891162, 29.378539];
     addRotatedBox(
       carteCenter,
       8, 8,
@@ -546,7 +552,7 @@
       .bindPopup("<b>Carte</b><br>Lezzetli Kahveler");
 
     // 📍 QO – 10×6m – 60°
-    const qoCenter = [40.891091, 29.378964];
+    const qoCenter = [40.891091, 29.378934];
     addRotatedBox(
       qoCenter,
       10, 6,
@@ -588,8 +594,28 @@
       .addTo(map)
       .bindPopup("<b>Nescafe</b><br>Sıcak Kahveler");
 
+    // 🧲 Ferros – 10×6m – 75°
+    const ferrosCenter = [40.890850, 29.378640];
+    addRotatedBox(
+      ferrosCenter,
+      10, 6,
+      75, // Ferros açısı
+      "#546e7a", // Soft steel color
+      "<b>Ferros</b><br>Metal & Tasarım Ürünleri"
+    );
+
+    const ferrosLogo = L.icon({
+      iconUrl: 'ferros.png',
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    const ferrosMarker = L.marker(ferrosCenter, { icon: ferrosLogo })
+      .addTo(map)
+      .bindPopup("<b>Ferros</b><br>Metal & Tasarım Ürünleri");
+
     // 🛡️ Rasquad – 10×6m – 75°
-    const rasquadCenter = [40.891113, 29.379042];
+    const rasquadCenter = [40.891113, 29.379012];
     addRotatedBox(
       rasquadCenter,
       10, 6,
@@ -607,6 +633,48 @@
     const rasquadMarker = L.marker(rasquadCenter, { icon: rasquadLogo })
       .addTo(map)
       .bindPopup("<b>Rasquad</b><br>Gaming & Etkinlik Alanı");
+
+    // 🧼 Purest Solutions – 8×4m – 75°
+    const purestSolutionsCenter = [40.891000, 29.378475];
+    addRotatedBox(
+      purestSolutionsCenter,
+      8, 4,
+      75, 
+      "#81d4fa",
+      "<b>Purest Solutions</b><br>Cilt Bakımı"
+    );
+
+    const purestSolutionsMarker = L.marker(purestSolutionsCenter, { icon: L.divIcon({ className: 'custom-label', html: '🧴', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Purest Solutions</b><br>Cilt Bakımı");
+
+    // 🌸 Imprime Parfume – 8×4m – 75°
+    const imprimeParfumeCenter = [40.890941, 29.378503];
+    addRotatedBox(
+      imprimeParfumeCenter,
+      8, 4,
+      75, 
+      "#f48fb1",
+      "<b>Imprime Parfume</b><br>Parfüm Dünyası"
+    );
+
+    const imprimeParfumeMarker = L.marker(imprimeParfumeCenter, { icon: L.divIcon({ className: 'custom-label', html: '🌸', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Imprime Parfume</b><br>Parfüm Dünyası");
+
+    // 🛹 Rollboard – 8×4m – 75°
+    const rollboardCenter = [40.890885, 29.378524];
+    addRotatedBox(
+      rollboardCenter,
+      8, 4,
+      75, 
+      "#a1887f",
+      "<b>Rollboard</b><br>Kaykay Alanı"
+    );
+
+    const rollboardMarker = L.marker(rollboardCenter, { icon: L.divIcon({ className: 'custom-label', html: '🛹', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+      .addTo(map)
+      .bindPopup("<b>Rollboard</b><br>Kaykay Alanı");
     // Utility: Sync marker with box center
     function syncMarkerWithBox(marker, boxCenter) {
       marker.setLatLng(boxCenter);
@@ -629,6 +697,10 @@
     syncMarkerWithBox(carteMarker, carteCenter);
     syncMarkerWithBox(qoMarker, qoCenter);
     syncMarkerWithBox(rasquadMarker, rasquadCenter);
+    syncMarkerWithBox(ferrosMarker, ferrosCenter);
+    syncMarkerWithBox(purestSolutionsMarker, purestSolutionsCenter);
+    syncMarkerWithBox(imprimeParfumeMarker, imprimeParfumeCenter);
+    syncMarkerWithBox(rollboardMarker, rollboardCenter);
 
     // 📍 Önemli Noktalar
 
