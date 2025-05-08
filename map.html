@@ -213,10 +213,12 @@
       <img src="offtown_logo.png" alt="Offtown Logo" style="width:80px;margin-bottom:20px;">
       <h2 style="font-size:24px;color:#222;margin-bottom:20px;">Etkinlik Kuralları</h2>
       <p style="font-size:16px;color:#444;line-height:1.9;text-align:left;">
-        ✅ Etkinlik süresince bilekliklerinizi takılı tutunuz.<br>
-        🚫 Etkinlik alanına teneke ve cam "içecek" ambalajları ile gelmeyiniz :)<br>
-        ♻️ Atıklarınızı uygun kutulara atmanızı rica ederiz.<br>
-        🎉 <strong>Ve en önemlisi: EĞLENMEYİ UNUTMAYIN!</strong>
+        🚫 Etkinlik alanına cam şişe getirilmesi ve cam şişe kullanımı yasaktır.<br>
+        🗑️ Atıkların belirlenen çöp kutularına atılması zorunludur. Yere çöp atmak yasaktır.<br>
+        🚧 Sahne bariyerlerini geçmek kesinlikle yasaktır. Güvenlik görevlilerinin talimatlarına uyulmalıdır.<br>
+        🎟️ Etkinlik alanına yalnızca Sabancı Üniversitesi öğrencileri ve biletli mezunlar kabul edilecektir. Bilet kontrolü girişte yapılacaktır.<br>
+        🚔 Festival kurallarına uymayan kişiler etkinlik alanından çıkarılacaktır. Güvenlik görevlileri bu konuda tam yetkilidir.<br>
+        🎉 Ve en önemlisi: EĞLENMEYİ UNUTMAYIN!
       </p>
       <button id="closeRules" style="margin-top:25px;padding:12px 30px;border:none;background:#029aff;color:white;border-radius:30px;cursor:pointer;font-size:15px;box-shadow:0 4px 12px rgba(0,0,0,0.1);">Eğleneceğime Söz Veriyorum</button>
     </div>
@@ -349,10 +351,10 @@
     );
 
     // 🏦 İş Bankası – 10×10m – 0°
-    const isBankasiCenter = [40.891340, 29.379111];
+    const isBankasiCenter = [40.891322, 29.379051];
     addRotatedBox(
       isBankasiCenter,
-      15, 20,
+      20, 35,
       75, // İş Bankası açısı
       "#0b3c5d",
       "<b>Maksimum Genç</b>"
@@ -360,17 +362,17 @@
 
 
     // 📻 RadyoTown – 10×10m – -20°
-    const radyoTownCenter = [40.890944, 29.378831];
+    const radyoTownCenter = [40.890890, 29.378747];
     addRotatedBox(
       radyoTownCenter,
-      12, 8,
-      50, // RadyoTown açısı
+      10, 6,
+      55, // RadyoTown açısı
       "#6a0dad",
       "<b>RadyoTown</b><br>Canlı Yayın & DJ"
     );
 
     // 🍗 Tavuk Standı – 10×10m – 60°
-    const tavukStandiCenter = [40.891026, 29.378558];
+    const tavukStandiCenter = [40.890864, 29.378642];
     addRotatedBox(
       tavukStandiCenter,
       10, 6,
@@ -400,13 +402,23 @@
     );
 
     // 🍕 Pasaport Pizza – 10×6m – 60°
-    const pasaportPizzaCenter = [40.890944, 29.378586];
+    const pasaportPizzaCenter = [40.890953, 29.378610];
     addRotatedBox(
       pasaportPizzaCenter,
-      10, 6,
+      9, 6,
       75, // Pasaport Pizza açısı
       "#c0392b",
       "<b>Pasaport Pizza</b><br>Hızlı Pizza Servisi"
+    );
+
+    // 🍝 Pasta La Vista – 10×6m – 60°
+    const pastaLaVistaCenter = [40.891034, 29.378586];
+    addRotatedBox(
+      pastaLaVistaCenter,
+      10, 6,
+      75, // Pasta La Vista açısı
+      "#f5b041",
+      "<b>Pasta La Vista</b><br>Taze Makarna Lezzetleri"
     );
 
     // 🥔 PotatoLab – 10×6m – 40°
@@ -453,7 +465,7 @@
     const paulKenzieCenter = [40.891074, 29.378843];
     addRotatedBox(
       paulKenzieCenter,
-      10, 10,
+      8, 10,
       75, // Paul Kenzie açısı
       "#e91e63",
       "<b>Paul Kenzie</b><br>Moda & Aksesuar"
@@ -499,6 +511,16 @@
     const pasaportPizzaMarker = L.marker(pasaportPizzaCenter, { icon: pasaportPizzaLogo })
       .addTo(map)
       .bindPopup("<b>Pasaport Pizza</b><br>Hızlı Pizza Servisi");
+
+    const pastaLaVistaLogo = L.icon({
+      iconUrl: 'pasta.jpg',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14]
+    });
+
+    const pastaLaVistaMarker = L.marker(pastaLaVistaCenter, { icon: pastaLaVistaLogo })
+      .addTo(map)
+      .bindPopup("<b>Pasta La Vista</b><br>Taze Makarna Lezzetleri");
     const potatoLabLogo = L.icon({
       iconUrl: 'potato_lab.png',
       iconSize: [40, 40],
@@ -521,10 +543,10 @@
       .addTo(map)
       .bindPopup("<b>Yves Rocher</b><br>Doğal Kozmetik");
     // 🔥 Burn – 10×6m – 75°
-    const burnCenter = [40.891254, 29.378677];
+    const burnCenter = [40.891104, 29.379168];
     addRotatedBox(
       burnCenter,
-      8, 8,
+      12, 12,
       75, // Burn açısı
       "#000000",
       "<b>Burn</b><br>Enerji İçeceği"
@@ -538,13 +560,32 @@
       })
     }).addTo(map).bindPopup("<b>Burn</b><br>Enerji İçeceği");
 
+    // 🏅 Spor Kulübü Etkinlikleri – 10×6m – 75°
+    const sporKulubuCenter = [40.891529, 29.378955];
+    addRotatedBox(
+      sporKulubuCenter,
+      20, 35,
+      75, // Spor Kulübü açısı
+      "#1abc9c",
+      "<b>Spor Kulübü Etkinlikleri</b><br>Basketbol, Voleybol, Sürpriz Etkinlikler"
+    );
+
+    const sporKulubuMarker = L.marker(sporKulubuCenter, {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🏅',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      })
+    }).addTo(map).bindPopup("<b>Spor Kulübü Etkinlikleri</b><br>Basketbol, Voleybol, Sürpriz Etkinlikler");
+
     // 📍 Carte – 10×6m – 60°
     const carteCenter = [40.891162, 29.378539];
     addRotatedBox(
       carteCenter,
       8, 8,
       75, // Carte açısı
-      "#3498db",
+      "#ffffff",
       "<b>Carte</b><br>Lezzetli Kahveler"
     );
     const carteLogo = L.icon({
@@ -554,23 +595,29 @@
     });
     const carteMarker = L.marker(carteCenter, { icon: carteLogo })
       .addTo(map)
-      .bindPopup("<b>Carte</b><br>Lezzetli Kahveler");
+      .bindPopup("<b>Carte</b><br>Lezzetli Kahveler, Smoothie, Milkshake, Iced Latte");
 
     // 📍 QO – 10×6m – 60°
-    const qoCenter = [40.891091, 29.378934];
+    const qoCenter = [40.891055, 29.378718];
     addRotatedBox(
       qoCenter,
-      10, 6,
-      60, // QO açısı
+      8, 10,
+      75, // QO açısı
       "#7f8c8d",
       "<b>QO</b><br>Ürün Tanıtım Alanı"
     );
-    const qoMarker = L.marker(qoCenter, { icon: L.divIcon({ className: 'custom-label', html: '🔧', iconSize: [20, 20], iconAnchor: [10, 10] }) })
+    const qoLogo = L.icon({
+      iconUrl: 'qo.jpg',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14]
+    });
+
+    const qoMarker = L.marker(qoCenter, { icon: qoLogo })
       .addTo(map)
-      .bindPopup("<b>QO</b><br>Ürün Tanıtım Alanı");
+      .bindPopup("<b>Quite Often</b><br>Ürün Tanıtım Alanı");
 
     // ☕️ Nescafe – Perfect Circle Polygon
-    const nescafeCenter = [40.891351, 29.378846];
+    const nescafeCenter = [40.891252, 29.378702];
     const nescafeRadius = 0.00006; // Approx ~6-8m radius
     const nescafeCircleCoords = [];
     const numPoints = 60; // Smooth circle
@@ -595,12 +642,12 @@
       iconAnchor: [20, 20]
     });
 
-    const nescafeMarker = L.marker([40.891351, 29.378846], { icon: nescafeLogo })
+    const nescafeMarker = L.marker([40.891252, 29.378702], { icon: nescafeLogo })
       .addTo(map)
       .bindPopup("<b>Nescafe</b><br>Sıcak Kahveler");
 
     // Ferros – 10×6m – 75°
-    const ferrosCenter = [40.890850, 29.378640];
+    const ferrosCenter = [40.890958, 29.378880];
     addRotatedBox(
       ferrosCenter,
       10, 6,
@@ -620,10 +667,10 @@
       .bindPopup("<b>Ferros</b><br>Ferros Emirgan");
 
     // 🛡️ Rasquad – 10×6m – 75°
-    const rasquadCenter = [40.891113, 29.379012];
+    const rasquadCenter = [40.891095, 29.378964];
     addRotatedBox(
       rasquadCenter,
-      10, 6,
+      8, 10,
       75, // Rasquad açısı
       "#8e24aa", // Daha parlak mor tonu
       "<b>Rasquad</b><br>Gaming & Etkinlik Alanı"
@@ -663,7 +710,7 @@
     const imprimeParfumeCenter = [40.890941, 29.378503];
     addRotatedBox(
       imprimeParfumeCenter,
-      10, 10,
+      6, 4,
       75, 
       "#f48fb1",
       "<b>Imprime Parfume</b><br>Parfüm Dünyası"
@@ -683,7 +730,7 @@
     const rollboardCenter = [40.890885, 29.378524];
     addRotatedBox(
       rollboardCenter,
-      8, 4,
+      6, 4,
       75, 
       "#a1887f",
       "<b>Rollboard</b><br> "
@@ -692,6 +739,25 @@
     const rollboardMarker = L.marker(rollboardCenter, { icon: L.divIcon({ className: 'custom-label', html: '🛹', iconSize: [20, 20], iconAnchor: [10, 10] }) })
       .addTo(map)
       .bindPopup("<b>Rollboard</b><br> ");
+
+    // 🍿 Festival Atıştırmalıkları – 8×6m – 60°
+    const festivalSnacksCenter = [40.891243, 29.378503];
+    addRotatedBox(
+      festivalSnacksCenter,
+      8, 6,
+      75, // Atıştırmalık açısı
+      "#e67e22",
+      "<b>Festival Atıştırmalıkları</b><br>Patlamış Mısır, Cips, Şekerleme"
+    );
+
+    const festivalSnacksMarker = L.marker(festivalSnacksCenter, {
+      icon: L.divIcon({
+        className: 'custom-label',
+        html: '🍿',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      })
+    }).addTo(map).bindPopup("<b>Festival Atıştırmalıkları</b><br>Patlamış Mısır, Cips, Şekerleme");
     // Utility: Sync marker with box center
     function syncMarkerWithBox(marker, boxCenter) {
       marker.setLatLng(boxCenter);
@@ -707,6 +773,7 @@
     syncMarkerWithBox(tavukStandiMarker, tavukStandiCenter);
     syncMarkerWithBox(hobMarker, hobCenter);
     syncMarkerWithBox(pasaportPizzaMarker, pasaportPizzaCenter);
+    syncMarkerWithBox(pastaLaVistaMarker, pastaLaVistaCenter);
     syncMarkerWithBox(potatoLabMarker, potatoLabCenter);
     syncMarkerWithBox(maximumGamingMarker, maximumGamingCenter);
     syncMarkerWithBox(yvesRocherMarker, yvesRocherCenter);
@@ -718,6 +785,8 @@
     syncMarkerWithBox(purestSolutionsMarker, purestSolutionsCenter);
     syncMarkerWithBox(imprimeParfumeMarker, imprimeParfumeCenter);
     syncMarkerWithBox(rollboardMarker, rollboardCenter);
+    syncMarkerWithBox(festivalSnacksMarker, festivalSnacksCenter);
+    syncMarkerWithBox(sporKulubuMarker, sporKulubuCenter);
 
     // 📍 Önemli Noktalar
 
