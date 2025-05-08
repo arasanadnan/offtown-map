@@ -237,8 +237,12 @@
     // Allow two finger rotation on mobile (just like Google Maps style)
     map.getContainer().style.touchAction = "pan-x pan-y pinch-zoom rotate";
 
-    // Esri Uydu Haritası
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    // MapTiler Hybrid Haritası
+    L.tileLayer('https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=AOj7qNf18XPoXGsnrKZI', {
+      tileSize: 512,
+      zoomOffset: -1,
+      maxZoom: 22,
+      attribution: '&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> contributors'
     }).addTo(map);
 
     // Kullanıcının konumu
